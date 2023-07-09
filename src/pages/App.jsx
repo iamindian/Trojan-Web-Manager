@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-target-blank */
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import Counter from '../components/Counter';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -25,6 +26,9 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+      <div className="card">
+        <Counter/>
+      </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
@@ -32,4 +36,6 @@ function App() {
   )
 }
 
-export default App
+export function Component() {
+  return App();
+}
