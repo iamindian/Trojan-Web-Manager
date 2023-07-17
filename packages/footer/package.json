@@ -1,0 +1,14 @@
+{
+  "name": "@rocket/footer",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig":{
+    "registry":"http://localhost:4873"
+  },
+  "author": "Darren Z M LIN",
+  "license": "MIT"
+}
