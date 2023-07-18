@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install",
+    "test":""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iamindian/vite-react-env.git"
@@ -14,7 +17,7 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@commitlint/config-lerna-scopes": "^17.6.6",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lerna": "^7.1.4"
   }
 }
