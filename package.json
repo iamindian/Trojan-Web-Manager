@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "test":""
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,9 @@
     "@commitlint/config-lerna-scopes": "^17.6.6",
     "husky": "^8.0.0",
     "lerna": "^7.1.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   }
 }
