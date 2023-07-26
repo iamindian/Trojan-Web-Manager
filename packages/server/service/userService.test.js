@@ -21,9 +21,9 @@ describe("test user service", function () {
             console.log(query);
         })
     });
+    
     it('test get users', async () => {
         const users = await getUsers();
-        // console.log(users);
         expect(users.length).toBe(1);
     });
     it('test add user', async () => {
