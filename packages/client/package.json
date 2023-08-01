@@ -1,6 +1,5 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-client",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
