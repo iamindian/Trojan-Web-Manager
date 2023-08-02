@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.4...@darren-z-m-lin/trojan-web-manager-server@0.2.5) (2023-08-02)
+
+
+### Bug Fixes
+
+* add an error log ([8270452](https://github.com/iamindian/trojan-web-manager/commit/8270452f7bc171f02b4edbd93b4ce7cfb24b7ef9))
+
+
+
+
+
 ## [0.2.4](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.3...@darren-z-m-lin/trojan-web-manager-server@0.2.4) (2023-08-02)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-server
