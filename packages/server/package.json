@@ -1,8 +1,8 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": {
-    "twManagerServer":"./bin.js"
+    "twManagerServer": "./bin.js"
   },
   "description": "",
   "main": "http-server.js",
