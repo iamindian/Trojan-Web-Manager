@@ -8,7 +8,11 @@ export async function init(sequelize) {
     delta: DataTypes.INTEGER,
     quota: DataTypes.INTEGER,
     download: DataTypes.BIGINT(20),
-    upload: DataTypes.BIGINT(20)
+    upload: DataTypes.BIGINT(20),
+  },{
+    timestamps: false,
+    freezeTableName: true,
+    tableName:"users"
   });
   // await model.sync({ force: true });
 }

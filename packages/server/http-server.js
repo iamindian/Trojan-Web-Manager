@@ -34,22 +34,25 @@ async function start() {
   await userModel(sequelize);
   await userService(sequelize);
   app.use(bodyParser());
-  router.get("/users", async (ctx, next) => {
-    ctx.body = await getUsers(ctx.params.username, ctx.params.password);
-  }).get("/expiration", async (ctx, next) => {
-    try {
+  router
+  // .get("/users", async (ctx, next) => {
+  //   ctx.body = await getUsers(ctx.params.username, ctx.params.password);
+  // })
+  .get("/expiration", async (ctx, next) => {
+    try {c
       ctx.body  = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
     }catch(e){
       ctx.body = {}
     }
-  }).put("/adduser", async (ctx, next) => {
-    try {
-      const user = ctx.request.body;
-      ctx.body = await addUser(user.username, user.password);
-    } catch (e) {
-      ctx.body = {}
-    }
-  });
+  })
+  // .put("/adduser", async (ctx, next) => {
+  //   try {
+  //     const user = ctx.request.body;
+  //     ctx.body = await addUser(user.username, user.password);
+  //   } catch (e) {
+  //     ctx.body = {}
+  //   }
+  // });
   app.use(router.routes());
   const server = app.listen(8080, () => {
     console.log(`Server running on http://${process.env.HOST}:${process.env.PORT}`);
