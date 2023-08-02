@@ -2,7 +2,9 @@
   "name": "@darren-z-m-lin/trojan-web-manager-client",
   "version": "0.3.0",
   "type": "module",
-  "bin": "./bin/httpServer.js",
+  "bin": {
+    "twManager":"./bin/httpServer.js"
+  },
   "publishConfig": {
     "access": "public"
   },
