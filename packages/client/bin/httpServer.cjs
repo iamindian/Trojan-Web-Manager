@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 'use strict';
+const logger = {
+    info: console.log
+};
 const path = require("path");
 const { createServer } = require("http-server");
 const os = require('os');
@@ -8,9 +11,7 @@ const chalk = require('chalk')
 const port = process.env.PORT || 80;
 const protocol = 'http://';
 const server = createServer({root:path.join(__dirname, '..','dist')});
-const logger = {
-    info: console.log
-};
+logger.info(path.join(__dirname, '..','dist'));
 server.listen(port, "0.0.0.0", function () {
     logger.info(chalk.yellow('\nvailable on:'));
     Object.keys(ifaces).forEach(function (dev) {
