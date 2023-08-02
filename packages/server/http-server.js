@@ -1,4 +1,4 @@
-import dotenv from  'dotenv'
+import dotenv from 'dotenv'
 import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from 'koa-body-parser';
@@ -7,11 +7,8 @@ import { getUsers, getUserExpiration, addUser, init as userService } from "./ser
 // import https from "https";
 import { init as userModel } from "./models/User.model.js";
 
-if(!process.NODE_ENV){
-  dotenv.config({path:`.env`})
-}else{
-  dotenv.config({path:`.env.${process.NODE_ENV}`})
-}
+dotenv.config({ path: `.env` })
+
 const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
@@ -35,16 +32,16 @@ async function start() {
   await userService(sequelize);
   app.use(bodyParser());
   router
-  // .get("/users", async (ctx, next) => {
-  //   ctx.body = await getUsers(ctx.params.username, ctx.params.password);
-  // })
-  .get("/expiration", async (ctx, next) => {
-    try {
-      ctx.body  = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
-    }catch(e){
-      ctx.body = {}
-    }
-  })
+    // .get("/users", async (ctx, next) => {
+    //   ctx.body = await getUsers(ctx.params.username, ctx.params.password);
+    // })
+    .get("/expiration", async (ctx, next) => {
+      try {
+        ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
+      } catch (e) {
+        ctx.body = {}
+      }
+    })
   // .put("/adduser", async (ctx, next) => {
   //   try {
   //     const user = ctx.request.body;
@@ -54,7 +51,7 @@ async function start() {
   //   }
   // });
   app.use(router.routes());
-  const server = app.listen(8080, () => {
+  const server = app.listen(parseInt(process.env.PORT), () => {
     console.log(`Server running on http://${process.env.HOST}:${process.env.PORT}`);
   });
   return server;
