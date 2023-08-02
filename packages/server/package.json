@@ -1,6 +1,6 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-server",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "bin": {
     "twManagerServer": "./bin.js"
   },
