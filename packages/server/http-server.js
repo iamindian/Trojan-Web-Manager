@@ -39,7 +39,7 @@ async function start() {
   //   ctx.body = await getUsers(ctx.params.username, ctx.params.password);
   // })
   .get("/expiration", async (ctx, next) => {
-    try {c
+    try {
       ctx.body  = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
     }catch(e){
       ctx.body = {}
