@@ -1,4 +1,5 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv"
+import path from "path"
 import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from 'koa-body-parser';
@@ -8,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import NodeCache from 'node-cache';
 // import https from "https";
 import { init as userModel } from "./models/User.model.js";
-dotenv.config({ path: `.env` })
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 const nodeCache = new NodeCache({ stdTTL: 600, checkperiod: 120 });
 nodeCache.on('set',(key, value)=>{
   console.log(`node cache set ${key}->${value}`)
