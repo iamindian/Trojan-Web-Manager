@@ -14,7 +14,7 @@ export async function init(sequelize) {
     freezeTableName: true,
     tableName:"users"
   });
-  // await model.sync({ force: true });
+  await model.sync({ force: true });
 }
 
 
