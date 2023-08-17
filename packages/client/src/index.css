@@ -76,5 +76,9 @@ button:focus-visible {
   width: 100%;
 }
 .navigater .active {
-  color:aqua;
+  display:none;
+}
+
+.navigater a:not(.active) {
+  padding-left:16px;
 }
