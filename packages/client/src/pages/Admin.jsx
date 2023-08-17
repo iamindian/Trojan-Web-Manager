@@ -31,17 +31,22 @@ function Admin() {
     type: "loading"
   })
   const extendExpiration = async () => {
-    const response = await extend(username, password, quantity);
-    dispatch(loaded());
-    dispatch(update(response.data))
+    try {
+      const response = await extend(username, password, quantity);
+      dispatch(loaded());
+      dispatch(update(response.data))
+    } catch (e) {
+      dispatch(loaded());
+    }
+
 
   }
 
   return (
     <div style={{
-      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
+      display: "flex", justifyContent: "center", alignItem: "center", padding:"16px"
     }}>
-      <Stack spacing={2} direction="column">
+      <Stack spacing={2} direction="column" style={{width:"100% "}}>
         <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
         <TextField
@@ -49,18 +54,19 @@ function Admin() {
             setQuantity(e.target.value);
           }} variant="standard" type="number" inputProps={{ min: 0, max: 255, inputMode: 'numeric', pattern: '[0-9]*' }} />
 
+        <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
+          if (!usernameError && !passwordError) {
+            dispatch(loading());
+            extendExpiration();
 
+          }
+
+        }} variant="contained" loading={extReducer.loading} endIcon={<SendIcon />}>续费</LoadingButton>
+
+        <ReactJson style={{ marginTop: "24px" }} src={extReducer.user} />
       </Stack>
-      <div className='break'></div>
-      <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
-        if (!username) {
-          return;
-        }
-        dispatch(loading());
-        extendExpiration();
-      }} variant="contained" loading={extReducer.loading} endIcon={<SendIcon />}>续费</LoadingButton>
-      <div className='break'></div>
-      <ReactJson style={{marginTop:"24px"}} src={extReducer.user} />
+
+
     </div >
   )
 }

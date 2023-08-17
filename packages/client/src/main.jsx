@@ -3,11 +3,10 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider, useRouteError, isRouteErrorResponse, redirect, NavLink } from "react-router-dom";
 import { Provider } from "react-redux";
-import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
 import configureStore from './configureStore'
 import auth from './auth.js';
-
+import AxiosNavigator from './components/AxiosNavigator'
+import KeepAlive from "./components/Keepalive";
 const store = configureStore();
 const router = createBrowserRouter([
   {
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
         lazy: () => import("./pages/App"),
       },
       {
-        path:"/login",
+        path: "/login",
         lazy: () => import("./pages/Login"),
       }
     ],
@@ -62,26 +61,27 @@ function RootBoundary() {
 
   return <div>Something went wrong</div>;
 }
-
 function Layout() {
   return (
     <div className="navigater">
-      <div style={{ display: "flex", padding: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
+      <div style={{ display: "flex", paddingTop: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
         <NavLink to="/" >Home</NavLink>
         <NavLink to="/admin">Admin</NavLink>
-        <NavLink to="/login">Login</NavLink>
       </div>
       <div>
         <Outlet />
       </div>
+      <AxiosNavigator></AxiosNavigator>
     </div >
   )
 }
-
 createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router}>
+  <KeepAlive>
+    <Provider store={store}>
+      <RouterProvider router={router}>
 
-    </RouterProvider>
-  </Provider>
+      </RouterProvider>
+    </Provider>
+  </KeepAlive>
+
 );
