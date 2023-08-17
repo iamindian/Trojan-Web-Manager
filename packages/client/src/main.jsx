@@ -19,12 +19,10 @@ const router = createBrowserRouter([
         lazy: () => import("./pages/Admin"),
         loader: async ({ params: { username, password } }) => {
           await auth.signin(username, password);
-          if (auth.isAuthenticated) {
-            return {};
-          } else {
+          if (!auth.isAuthenticated) {
             throw new Response("Not Found", { status: 404 });
           }
-
+          return {}
         }
       },
       {
@@ -61,22 +59,11 @@ function RootBoundary() {
 }
 
 function Layout() {
-  function isActiveLink() {
-    const to = this.props.to;
-    const location = useLocation();
-    const first = location.pathname.split('/')[1];
-    if (!first) {
-      return "always"
-    } else if (first === to) {
-      return "always"
-    }
-    return "none"
-  }
   return (
     <div className="navigater">
       <Stack spacing={2} direction="row" style={{ padding: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
         <NavLink to="/" >Home</NavLink>
-        <NavLink to="/admin">Admin</NavLink>
+        {/* <NavLink to="/admin">Admin</NavLink> */}
       </Stack>
       <div>
         <Outlet />

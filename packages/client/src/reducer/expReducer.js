@@ -1,5 +1,5 @@
 const initializtion = { expiration: "--", loading: false };
-export default function exReducer(state = initializtion, action) {
+export default function expReducer(state = initializtion, action) {
   switch (action.type) {
     case "update":
       return {expiration: action.payload.expiration}
