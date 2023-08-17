@@ -24,10 +24,20 @@ function App() {
   const [password, passwordError, checkPassword] = useCheckPassword();
   const expReducer = useSelector((state) => state.expReducer)
   const dispatch = useDispatch();
-  const update = value => ({
-    type: "update",
-    payload: value[0]
-  })
+  const update = value => {
+    if(value && value.length > 0){
+      return {
+        type: "update",
+        payload: value[0]
+      }
+    }else{
+      return {
+        type: "update",
+        payload: {expiration: '--'}
+      }
+    }
+    
+  }
   const loaded = () => ({
     type: "loaded"
   })
@@ -39,7 +49,7 @@ function App() {
     dispatch(loaded());
     dispatch(update(response.data))
   }
-  
+
 
   return (
 
@@ -47,7 +57,7 @@ function App() {
       display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
     }}>
       <Stack spacing={2} direction="column">
-        <TwmUsername error={usernameError} onBlur={checkUsername}/>
+        <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
       </Stack>
       <div className='break'></div>
