@@ -22,17 +22,18 @@ describe('test server', function () {
         await server.close()
     })
     it("test add an user", async () => {
-        const username = "admin", password = "123456"
-        const admin = "admin", adminpass = "admin"
+        await sequelize.models.User.truncate();
+        const username = "test", password = "test"
+        const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.put('/adduser').set("Cookie", [...header['set-cookie']]).send({
             username, password: ssh224(username, password)
         })
-        await expect(response.status).toBe(200);
+        expect(response.status).toBe(200);
     })
     it("test signin", async () => {
-        const username = "admin", password = "admin"
+        const username = "admin", password = "123456"
         const response = await request.get('/signin').query({
             username, password
         })
@@ -55,11 +56,23 @@ describe('test server', function () {
 
     })
     it("test get users with right token", async () => {
-        const admin = "admin", adminpass = "admin"
-        let response = await request.get('/signin').query({ username: admin, password: adminpass });
-        const { header } = response;
-        response = await request.get('/users').set("Cookie", [...header['set-cookie']])
+        let response
+        try {
+            await sequelize.models.User.truncate();
+            for (let i = 0; i < 5; i++) {
+                await sequelize.models.User.create({username: "t" + i, password: ssh224("t" + i, "p" + i)});
+            }
+            const admin = "admin", adminpass = "123456"
+            response = await request.get('/signin').query({ username: admin, password: adminpass });
+            const { header } = response;
+            response = await request.get('/users').query({ offset: 0, limit: 5 }).set("Cookie", [...header['set-cookie']])
+
+        } catch (e) {
+            console.error(e);
+        }
         expect(response.status).toBe(200);
+        expect(response.body.users.length).toBe(5)
+
     })
     it("test get users with wrong token", async () => {
         const response = await request.get('/users').set("Cookie", ["access_token=xxx"])
@@ -91,7 +104,7 @@ describe('test server', function () {
         } catch (e) {
             console.log(e)
         }
-        const admin = "admin", adminpass = "admin"
+        const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
@@ -125,7 +138,7 @@ describe('test server', function () {
         } catch (e) {
             console.log(e)
         }
-        const admin = "admin", adminpass = "admin"
+        const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
@@ -159,7 +172,7 @@ describe('test server', function () {
         } catch (e) {
             console.log(e)
         }
-        const admin = "admin", adminpass = "admin"
+        const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({

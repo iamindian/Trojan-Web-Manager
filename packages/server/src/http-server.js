@@ -90,7 +90,9 @@ async function start() {
       }
     })
     .get("/users", async (ctx, next) => {
-      ctx.body = await getUsers();
+      const offset = parseInt(ctx.request.query.offset);
+      const limit = parseInt(ctx.request.query.limit);
+      ctx.body = await getUsers(offset, limit);
     })
     .get("/expiration", async (ctx, next) => {
       try {

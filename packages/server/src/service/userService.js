@@ -7,9 +7,10 @@ let sequelize = null;
 export async function init(sequelizeInstance) {
   sequelize = sequelizeInstance;
 }
-export async function getUsers() {
-  const users = await sequelize.models.User.findAll();
-  return users;
+export async function getUsers(offset, limit) {
+  const users = await sequelize.models.User.findAll({offset, limit});
+  const total = await sequelize.models.User.count();
+  return {users, total};
 }
 export async function addUser(username, password) {
   const User = sequelize.models.User;
