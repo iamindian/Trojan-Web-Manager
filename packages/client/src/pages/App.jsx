@@ -25,18 +25,18 @@ function App() {
   const expReducer = useSelector((state) => state.expReducer)
   const dispatch = useDispatch();
   const update = value => {
-    if(value && value.length > 0){
+    if (value && value.length > 0) {
       return {
         type: "update",
         payload: value[0]
       }
-    }else{
+    } else {
       return {
         type: "update",
-        payload: {expiration: '--'}
+        payload: { expiration: '--' }
       }
     }
-    
+
   }
   const loaded = () => ({
     type: "loaded"
@@ -54,9 +54,12 @@ function App() {
   return (
 
     <div style={{
-      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap", padding:"16px"
+      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap", padding: "16px"
     }}>
-      <Stack spacing={2} direction="column" style={{width: "100%"}}>
+      <Stack spacing={2} direction="column">
+        <Typography sx={{ fontSize: 20, textAlign:"center" }} color="text.secondary">
+          User information
+        </Typography>
         <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
         <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {

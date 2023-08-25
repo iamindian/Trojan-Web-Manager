@@ -26,3 +26,19 @@ export async function extend(username, password,quantity){
         }
     })
 }
+export async function extendById(id,quantity){
+    return await axios.get(`${prefix}/extendById`,{
+        params:{
+            id,
+            quantity
+        }
+    })
+}
+export async function addUser(username, password){
+    return await axios.post(`${prefix}/adduser`, {
+        params:{
+            username,
+            password
+        }
+    })
+}
