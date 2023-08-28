@@ -12,14 +12,6 @@ import TwmUsername from '../components/TwmUsername';
 import useCheckUsername from '../hooks/useCheckUsername';
 import useCheckPassword from '../hooks/useCheckPassword';
 function App() {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [usernameError, setUsernameError] = useState(false);
-  // const [passwordError, setPasswordError] = useState(false);
-  // const userRegex = /^[a-zA-Z@_.]+$/;
-  // const passwordRegex = /^[0-9]+$/;
-  // const userErrorMessage = "只允许输入允许小写a-z,大写A-Z,@,.";
-  // const passwordErrorMessage = "只允许输入数字";
   const [username, usernameError, checkUsername] = useCheckUsername();
   const [password, passwordError, checkPassword] = useCheckPassword();
   const expReducer = useSelector((state) => state.expReducer)
@@ -58,7 +50,7 @@ function App() {
     }}>
       <Stack spacing={2} direction="column">
         <Typography sx={{ fontSize: 20, textAlign:"center" }} color="text.secondary">
-          User information
+          User Query
         </Typography>
         <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
@@ -68,9 +60,9 @@ function App() {
           }
           dispatch(loading());
           fetchExpiration();
-        }} variant="contained" loading={expReducer.loading} endIcon={<SendIcon />}>查询</LoadingButton>
+        }} variant="contained" loading={expReducer.loading} endIcon={<SendIcon />}>Query</LoadingButton>
         <Typography sx={{ fontSize: 18 }} color="text.secondary">
-          有效期: {expReducer.expiration} 天
+          Expiration: {expReducer.expiration} days
         </Typography>
       </Stack>
     </div >

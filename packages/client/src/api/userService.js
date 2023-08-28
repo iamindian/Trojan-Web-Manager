@@ -35,10 +35,8 @@ export async function extendById(id,quantity){
     })
 }
 export async function addUser(username, password){
-    return await axios.post(`${prefix}/adduser`, {
-        params:{
+    return await axios.put(`${prefix}/adduser`, {
             username,
             password
-        }
     })
 }

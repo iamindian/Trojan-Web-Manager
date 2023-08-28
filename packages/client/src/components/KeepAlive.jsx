@@ -5,7 +5,7 @@ function KeepAlive(props) {
     let [timer, setTimer] = useState()
     async function ping() {
         clearTimeout(timer);
-        if(sessionStorage.getItem("isAuthenticated")){
+        if(sessionStorage.getItem("isAuthenticated")==="true"){
             try{
                 await signin("","")
             }catch(e){
