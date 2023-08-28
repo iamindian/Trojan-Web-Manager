@@ -17,12 +17,12 @@
   "author": "Darren Z M LIN",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "@commitlint/config-lerna-scopes": "^17.6.6",
-    "concurrently": "^8.2.0",
-    "husky": "^8.0.0",
-    "lerna": "^7.1.4"
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/config-lerna-scopes": "^17.7.0",
+    "concurrently": "^8.2.1",
+    "husky": "^8.0.3",
+    "lerna": "^7.1.5"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",

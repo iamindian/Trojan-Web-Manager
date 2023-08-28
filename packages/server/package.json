@@ -14,6 +14,7 @@
     "clear": "rm -rf dist",
     "build": "pnpm clear && babel src --out-dir dist --extensions \".ts,.js\" --copy-files",
     "start": "pnpm build && node ./dist/index.js",
+    "esm": "node ./src/main.js",
     "dev": "pnpm build && nodemon ./dist/index.js"
   },
   "author": "Darren Z M LIN",
@@ -22,6 +23,7 @@
     "bignumber": "^1.1.0",
     "bignumber.js": "^9.1.1",
     "dotenv": "^16.3.1",
+    "esm": "^3.2.25",
     "koa": "^2.14.2",
     "koa-body-parser": "^1.1.2",
     "koa-router": "^12.0.0",
