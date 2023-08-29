@@ -5,6 +5,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
 import AxiosNavigator from './AxiosNavigator'
 import { NavLink, Outlet } from 'react-router-dom';
+import KeepAlive from './KeepAlive';
 function Layout() {
   const [isAuthenticated, setIsAuthenticated] = useState("false");
   const listener = useRef(null);
@@ -96,6 +97,7 @@ function Layout() {
         <Outlet context={{ openAlert }} />
       </div>
       <AxiosNavigator></AxiosNavigator>
+      <KeepAlive></KeepAlive>
       {open ? <ClickAwayListener onClickAway={onClickAway}>
         <CustomSnackbar {...getRootProps()}>{content}</CustomSnackbar>
       </ClickAwayListener> : null}

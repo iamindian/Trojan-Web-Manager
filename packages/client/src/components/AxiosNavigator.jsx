@@ -10,7 +10,8 @@ function AxiosNavigator(props) {
       (error) => {
         switch (error?.response?.status) {
           case 401:
-            sessionStorage.setItem("isAuthenticated", 'false');
+            sessionStorage.setItem("isAuthenticated",'false')
+            window.dispatchEvent( new Event('storage') )
             navRef.current('/login');
             break;
           default:
