@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.4.0...@darren-z-m-lin/trojan-web-manager-server@0.5.0) (2023-08-29)
+
+
+### Bug Fixes
+
+* fix missing __dirname in esm module ([a046708](https://github.com/iamindian/trojan-web-manager/commit/a046708d87784dc66a668ec5d0275070379b2aec))
+* handler an expiration can not be found ([777f31a](https://github.com/iamindian/trojan-web-manager/commit/777f31a8d78105f34f44ce97f186ab78750ce86a))
+* init data when user is created. integration esm ([659442d](https://github.com/iamindian/trojan-web-manager/commit/659442d4192a4e2fb785b751cd99b1031c1a69ef))
+* update node cache ttl ([b7f2937](https://github.com/iamindian/trojan-web-manager/commit/b7f293752502d9138db4889cea4c8ce7d13c5cd7))
+* update token ttl time ([dcb6eb5](https://github.com/iamindian/trojan-web-manager/commit/dcb6eb5733b405b69c1dd02088351ecd4ed06da2))
+
+
+### Features
+
+* adduser, extend, signin, expiration, users, auth ([770696c](https://github.com/iamindian/trojan-web-manager/commit/770696c78c9fc7254c4a35c9d1f0f1d9a56ca92b))
+* extend expiration by id added, get users by id added ([a5d1aa1](https://github.com/iamindian/trojan-web-manager/commit/a5d1aa1189b87da772b646bc1d2602d5203e64e8))
+* mvcc for resolving extend concurrency issue ([3c93676](https://github.com/iamindian/trojan-web-manager/commit/3c936763d011f7f6acd0d0d9f246b5b9d615cac4))
+* users pagination added ([4bbef18](https://github.com/iamindian/trojan-web-manager/commit/4bbef18ff4ea502c8f977625588631523a4500da))
+
+
+
+
+
 # [0.4.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.3.1...@darren-z-m-lin/trojan-web-manager-server@0.4.0) (2023-08-03)
 
 
