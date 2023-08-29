@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.4.0...@darren-z-m-lin/trojan-web-manager-client@0.4.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* fix a bug for processing 401 error ([150fe6b](https://github.com/iamindian/trojan-web-manager/commit/150fe6bd3a7778f23e9d1efd794830d5b01a2952))
+
+
+
+
+
 # [0.4.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.3.9...@darren-z-m-lin/trojan-web-manager-client@0.4.0) (2023-08-29)
 
 
