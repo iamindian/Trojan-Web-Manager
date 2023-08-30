@@ -42,7 +42,7 @@ const sequelize = new Sequelize(database, username, password, {
     acquire: 60000,
     evict: 0
   },
-  logging: false,
+  logging: true,
 });
 const app = new Koa();
 const router = new Router();
