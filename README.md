@@ -64,8 +64,8 @@ server {
         listen       127.0.0.1:8000 default_server;
         server_name  127.0.0.1;
         root         /usr/share/nginx/html;
-        #ssl_certificate /etc/letsencrypt/live/ac.linzhimin.net/fullchain.pem; # REPLACE HERE
-        #ssl_certificate_key /etc/letsencrypt/live/ac.linzhimin.net/privkey.pem; # REPLACE HERE
+        #ssl_certificate /path/to/fullchain.pem; # REPLACE HERE
+        #ssl_certificate_key /path/to/privkey.pem; # REPLACE HERE
         #ssl_session_cache shared:SSL:1m;
         #ssl_session_timeout  10m;
         #ssl_ciphers PROFILE=SYSTEM;
