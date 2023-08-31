@@ -116,7 +116,7 @@ http://127.0.0.1:8000
 #### Login system using username and password in .env
 
 ## How to start and devlop the project
-#### prerequisites
+
 1. checkout the source code
 ```
 git checkout ${project-url}
