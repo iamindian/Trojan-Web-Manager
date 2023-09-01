@@ -6,9 +6,9 @@
   "scripts": {
     "prepare": "husky install",
     "test": "",
-    "start": "concurrently --kill-others \"pnpm dev-server\" \"pnpm dev-client\"",
+    "dev": "concurrently --kill-others \"pnpm dev-server\" \"pnpm dev-client\"",
     "dev-client": "cd ./packages/client && pnpm dev",
-    "dev-server": "cd ./packages/server && pnpm start"
+    "dev-server": "cd ./packages/server && pnpm dev"
   },
   "repository": {
     "type": "git",
