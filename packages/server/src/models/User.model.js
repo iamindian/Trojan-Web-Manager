@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 export async function init(sequelize) {
   const model = sequelize.define("User", {
-    id: { type:DataTypes.INTEGER, primaryKey: true },
+    id: { type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     start: DataTypes.DATE,
