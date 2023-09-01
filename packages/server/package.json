@@ -4,7 +4,9 @@
   "bin": "./bin.js",
   "description": "",
   "main": "http-server.js",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest --silent --watch",
     "start": "node ./index.js",
