@@ -1,7 +1,7 @@
 import "./index.css";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, Outlet, RouterProvider, useRouteError, isRouteErrorResponse, useLocation, NavLink } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider, useRouteError, isRouteErrorResponse, redirect, NavLink } from "react-router-dom";
 import { Provider } from "react-redux";
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
@@ -15,12 +15,13 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/admin/:username/:password",
+        path: "/admin",
         lazy: () => import("./pages/Admin"),
-        loader: async ({ params: { username, password } }) => {
-          await auth.signin(username, password);
+        loader: async () => {
+          // await auth.signin(username, password);
           if (!auth.isAuthenticated) {
-            throw new Response("Not Found", { status: 404 });
+            return redirect("/login")
+            // throw new Response("Not Found", { status: 404 });
           }
           return {}
         }
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         index: true,
         lazy: () => import("./pages/App"),
+      },
+      {
+        path:"/login",
+        lazy: () => import("./pages/Login"),
       }
     ],
     errorElement: <RootBoundary />,
@@ -61,10 +66,11 @@ function RootBoundary() {
 function Layout() {
   return (
     <div className="navigater">
-      <Stack spacing={2} direction="row" style={{ padding: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
+      <div style={{ display: "flex", padding: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
         <NavLink to="/" >Home</NavLink>
-        {/* <NavLink to="/admin">Admin</NavLink> */}
-      </Stack>
+        <NavLink to="/admin">Admin</NavLink>
+        <NavLink to="/login">Login</NavLink>
+      </div>
       <div>
         <Outlet />
       </div>
