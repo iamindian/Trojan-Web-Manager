@@ -2,10 +2,13 @@ import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import InfinitLoader from "react-window-infinite-loader"
 import useGetUsers from "../hooks/useGetUsers";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef ,forwardRef} from "react";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment';
 import Typography from '@mui/material/Typography';
 function Users() {
+    const ITEM_SIZE = 35;
+    const PADDING_SIZE = 5;
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     // const [isNextPageLoading, setIsNextPageLoading] = useState(false);
@@ -42,10 +45,10 @@ function Users() {
     }
     const Row = ({ index, style }) => {
         let label;
-        style = Object.assign({}, style, { textAlign: "center" })
+        style = Object.assign({}, style, { textAlign: "center", lineHeight:"35px"})
         if (isItemLoaded(index)) {
             const user = users[index];
-            label = `Username: ${user.username} , Quota: ${user.quota} , Start: ${user.start} , Delta: ${user.delta}`;
+            label = `Username: ${user.username} , Quota: ${user.quota} , Start: ${moment(user.start).format("MMM Do YY")} , Delta: ${user.delta}`;
         } else {
             label = "loading";
         }
@@ -58,6 +61,16 @@ function Users() {
     useEffect(() => {
         loadMoreItems(0, 10);
     }, [])
+    const innerElementType = forwardRef(({ style, ...rest }, ref) => (
+        <div
+            ref={ref}
+            style={{
+                ...style,
+                height: `${parseFloat(style.height) + PADDING_SIZE * 2}px`
+            }}
+            {...rest}
+        />
+    ));
     return (<div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
         <div style={{ height: "500px", width: "600px" }}>
@@ -75,9 +88,10 @@ function Users() {
                                 className="List"
                                 height={height}
                                 itemCount={itemCount}
-                                itemSize={50}
+                                itemSize={ITEM_SIZE}
                                 width={width}
                                 onItemsRendered={onItemsRendered}
+                                innerElementType={innerElementType}
                             >
                                 {Row}
                             </List>

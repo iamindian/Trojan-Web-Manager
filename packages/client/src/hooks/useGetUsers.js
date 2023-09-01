@@ -1,4 +1,4 @@
-import { useState } from "React";
+import { useState } from "react";
 import axios from "axios";
 const prefix = import.meta.env.VITE_API_PREFIX;
 function useGetUsers() {
