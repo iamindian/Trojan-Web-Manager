@@ -5,7 +5,7 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "message": "chore: publish %s"
+      "message": "chore: publish"
     }
   }
 }
