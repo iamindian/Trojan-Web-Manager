@@ -5,6 +5,7 @@ import useCheckPassword from "../hooks/useCheckPassword"
 import { useNavigate } from "react-router-dom";
 import { Stack, Button } from "@mui/material"
 import { signin } from "../api/userService";
+import Typography from '@mui/material/Typography';
 import auth from "../auth"
 function Login(props) {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Login(props) {
         if (!usernameError && !passwordError) {
             const response = await signin(username, password)
             if (response.status === 200) {
-                auth.isAuthenticated = true;
+                sessionStorage.setItem("isAuthenticated",true);
                 navigate("/admin")
             }
         }
@@ -24,6 +25,9 @@ function Login(props) {
         display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
     }}>
         <Stack spacing={2} direction="column">
+            <Typography sx={{ fontSize: 20 ,textAlign:"center"}} color="text.secondary">
+                Login
+            </Typography>
             <TwmUsername error={usernameError} onBlur={checkUsername} />
             <TwmPassword error={passwordError} onBlur={checkPassword} />
             <Button variant="contained" onClick={login}>登录</Button>
@@ -33,3 +37,4 @@ function Login(props) {
 export function Component() {
     return Login();
 }
+Component.displayName = "Login";
