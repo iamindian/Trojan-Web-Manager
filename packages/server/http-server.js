@@ -39,6 +39,7 @@ async function start() {
       try {
         ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
       } catch (e) {
+        console.error(e);
         ctx.body = {}
       }
     })
