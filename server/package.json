@@ -1,7 +1,7 @@
 {
   "name": "@rocket/server",
   "version": "0.0.1",
-  "bin":"./bin.js",
+  "bin": "./bin.js",
   "description": "",
   "main": "http-server.js",
   "scripts": {
