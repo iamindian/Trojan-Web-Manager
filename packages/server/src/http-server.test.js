@@ -31,6 +31,7 @@ describe('test server', function () {
             username, password: ssh224(username, password)
         })
         expect(response.status).toBe(200);
+        expect(JSON.parse(response.text).username).toBe(username);
     })
     it("test signin", async () => {
         const username = "admin", password = "123456"

@@ -14,7 +14,7 @@ export async function getUsers(offset, limit, where) {
 }
 export async function addUser(username, password) {
   const User = sequelize.models.User;
-  return await User.create({ username, password: ssh224(username, password) });
+  return await User.create({ username, password: ssh224(username, password), delta: 1, quota: -1, start: Date.now(), download:0, upload:0 });
 }
 export async function getUserExpiration(username, password) {
   return await sequelize.query(`select DATEDIFF(DATE_ADD(start, INTERVAL delta MONTH), now()) as expiration from users where password = '${ssh224(username, password)}'`, {
