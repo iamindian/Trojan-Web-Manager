@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "test": ""
+    "test": "",
+    "start": "concurrently --kill-others \"pnpm dev-server\" \"pnpm dev-client\"",
+    "dev-client": "cd ./packages/client && pnpm dev",
+    "dev-server": "cd ./packages/server && pnpm start"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,7 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@commitlint/config-lerna-scopes": "^17.6.6",
+    "concurrently": "^8.2.0",
     "husky": "^8.0.0",
     "lerna": "^7.1.4"
   },
