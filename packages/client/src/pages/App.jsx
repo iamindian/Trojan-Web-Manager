@@ -1,34 +1,22 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
+import 'react'
 import './App.css'
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={{
+      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
+    }}>
+      <TextField id="standard-basic" label="输入用户名" variant="standard" />
+      <div className='break'></div>
+      <div style={{marginTop:"24px"}}>
+        <Typography sx={{ fontSize: 10 }} color="text.secondary">
+          有效期
+        </Typography>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    </div >
   )
 }
 
