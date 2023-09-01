@@ -9,10 +9,11 @@ const os = require('os');
 const ifaces = os.networkInterfaces();
 const chalk = require('chalk')
 const port = process.env.PORT || 80;
+const host = process.env.HOST || "127.0.0.1";
 const protocol = 'http://';
 const server = createServer({root:path.join(__dirname, '..','dist')});
 logger.info(path.join(__dirname, '..','dist'));
-server.listen(port, "0.0.0.0", function () {
+server.listen(port, host, function () {
     logger.info(chalk.yellow('\nvailable on:'));
     Object.keys(ifaces).forEach(function (dev) {
         ifaces[dev].forEach(function (details) {
