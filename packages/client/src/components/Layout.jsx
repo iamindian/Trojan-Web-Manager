@@ -78,6 +78,7 @@ function Layout() {
   }
   useEffect(()=>{
     listener.current = window.addEventListener('storage',updateAuthenticated);
+    window.dispatchEvent( new Event('storage') ) 
     return ()=>{
       window.removeEventListener('storage', updateAuthenticated);
     }
@@ -85,9 +86,10 @@ function Layout() {
   return (
     <div className="navigater">
       <div style={{ display: "flex", paddingTop: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
-        <NavLink to="/" >Home</NavLink>
+        <NavLink to="/" >Query</NavLink>
         {isAuthenticated == "true" ? <NavLink to="/admin" end>Add</NavLink> : ""}
         {isAuthenticated == "true" ? <NavLink to="/users" end>Users</NavLink> : ""}
+        {/* {isAuthenticated == "true" ? <NavLink to="/grid" end>Grid</NavLink> : ""} */}
         {isAuthenticated == "true" ? "" : <NavLink to="/login" end>Login</NavLink>}
       </div>
       <div>
