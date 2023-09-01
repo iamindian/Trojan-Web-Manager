@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.2.1...@darren-z-m-lin/trojan-web-manager-client@0.3.0) (2023-08-02)
+
+
+### Features
+
+* add bin script for client ([fe4254a](https://github.com/iamindian/trojan-web-manager/commit/fe4254ae2509da05b8667ef2ef84869f07f64554))
+* start project by commandline globally ([cac0acf](https://github.com/iamindian/trojan-web-manager/commit/cac0acfc898b19312868e240d551fbc4c3f88fff))
+
+
+
+
+
 ## [0.2.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.2.0...@darren-z-m-lin/trojan-web-manager-client@0.2.1) (2023-08-02)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-client
