@@ -116,7 +116,7 @@ http://127.0.0.1:8000
 ```
 #### Login system using username and password in .env
 
-## How to start and devlop the project
+## How to start the project from the source
 
 1. checkout the source code
 ```
