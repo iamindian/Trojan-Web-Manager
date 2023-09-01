@@ -14,7 +14,6 @@ router.get("/users",async (ctx, next) => {
   ctx.body = await userService.getUserExpiration(ctx.request.query.username, ctx.request.query.password);
 }).put("/adduser", async (ctx, next) => {
   try{
-    console.log(ctx.request.body);
     const user = JSON.parse(ctx.request.body);
     await userService.addUser(user.username, user.password);
     ctx.body = "done"
