@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.3.9...@darren-z-m-lin/trojan-web-manager-client@0.4.0) (2023-08-29)
+
+
+### Bug Fixes
+
+* handler an expiration can not be found ([777f31a](https://github.com/iamindian/trojan-web-manager/commit/777f31a8d78105f34f44ce97f186ab78750ce86a))
+
+
+### Features
+
+* extend expiration from client to backend successfully ([0fc2564](https://github.com/iamindian/trojan-web-manager/commit/0fc2564e429e93ce910b8327403f78105ed57a68))
+* login feature implemented and fix some style bugs ([55becb3](https://github.com/iamindian/trojan-web-manager/commit/55becb35f8625cec7d611e5564320473bad9c095))
+* show nav links for administrator only ([ad3c08e](https://github.com/iamindian/trojan-web-manager/commit/ad3c08e930138fb2d1a20f5e0c03ae83e3601675))
+* table for showing users added ([786eb0a](https://github.com/iamindian/trojan-web-manager/commit/786eb0a0d692d8a9f47f190a7d9259fe02314744))
+* users list added, alert added, extend expiration by id ([46a6b7b](https://github.com/iamindian/trojan-web-manager/commit/46a6b7b410ad3acef05cfa99ddff487d5ebb04ee))
+
+
+
+
+
 ## [0.3.9](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.3.8...@darren-z-m-lin/trojan-web-manager-client@0.3.9) (2023-08-02)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-client
