@@ -54,14 +54,11 @@ function App() {
   return (
 
     <div style={{
-      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
+      display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap", padding:"16px"
     }}>
-      <Stack spacing={2} direction="column">
+      <Stack spacing={2} direction="column" style={{width: "100%"}}>
         <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
-      </Stack>
-      <div className='break'></div>
-      <div>
         <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
           if (usernameError || passwordError) {
             return;
@@ -69,14 +66,10 @@ function App() {
           dispatch(loading());
           fetchExpiration();
         }} variant="contained" loading={expReducer.loading} endIcon={<SendIcon />}>查询</LoadingButton>
-      </div>
-
-      <div className='break'></div>
-      <div style={{ marginTop: "24px" }}>
         <Typography sx={{ fontSize: 18 }} color="text.secondary">
           有效期: {expReducer.expiration} 天
         </Typography>
-      </div>
+      </Stack>
     </div >
   )
 }
