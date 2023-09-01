@@ -1,4 +1,4 @@
-import { getUsers, addUser } from "./userService.js";
+import { getUsers, addUser, getUserExpiration } from "./userService.js";
 export default {
-    getUsers, addUser
+    getUsers, addUser, getUserExpiration
 }

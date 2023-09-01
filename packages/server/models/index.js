@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import { userDao } from "./userDao.js";
+import { User } from "./User.model.js";
 const sequelize = new Sequelize("trojan", "root", "Ilove1225!", {
   dialect: "mysql",
   pool: {
@@ -8,5 +8,5 @@ const sequelize = new Sequelize("trojan", "root", "Ilove1225!", {
     acquire: 60000,
   },
 });
-const User = await userDao(sequelize);
-export { User };
+await User(sequelize);
+export { sequelize };
