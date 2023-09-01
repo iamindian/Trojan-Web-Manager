@@ -15,6 +15,9 @@ import { init as userModel } from "./models/User.model.js";
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
+console.info('admin:' + process.env.ADMIN);
+console.info('admin_password:' +process.env.ADMIN_PASSWORD)
+console.info('database:' +process.env.DATABASE)
 const nodeCache = new NodeCache({ stdTTL: 120, checkperiod: 120 });
 nodeCache.on('set', (key, value) => {
   console.log(`node cache set ${key}->${value}`)
