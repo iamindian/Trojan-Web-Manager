@@ -14,10 +14,19 @@ import { init as userModel } from "./models/User.model.js";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+import yargs from 'yargs'
+const args = yargs(process.argv.slice(2)).argv
+if (args.config) {
+  dotenv.config({ path: args.config });
+} else {
+  dotenv.config({ path: path.resolve(__dirname, '../.env') });
+}
 console.info('admin:' + process.env.ADMIN);
-console.info('admin_password:' +process.env.ADMIN_PASSWORD)
-console.info('database:' +process.env.DATABASE)
+console.info('admin_password:' + process.env.ADMIN_PASSWORD)
+console.info('database:' + process.env.DATABASE)
+console.info('host:' + process.env.HOST)
+console.info('username:' + process.env.USERNAME)
+console.info('password' + process.env.PASSWORD)
 const nodeCache = new NodeCache({ stdTTL: 120, checkperiod: 120 });
 nodeCache.on('set', (key, value) => {
   console.log(`node cache set ${key}->${value}`)
@@ -96,7 +105,7 @@ async function start() {
       const offset = parseInt(ctx.request.query.offset);
       const limit = parseInt(ctx.request.query.limit);
       const id = ctx.request.query.id;
-      if(Number.isNaN(offset) || Number.isNaN(limit)){
+      if (Number.isNaN(offset) || Number.isNaN(limit)) {
         return;
       }
       // const username = ctx.request.query.username;
