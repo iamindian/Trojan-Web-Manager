@@ -15,8 +15,9 @@ function Login(props) {
         if (!usernameError && !passwordError) {
             const response = await signin(username, password)
             if (response.status === 200) {
-                sessionStorage.setItem("isAuthenticated",true);
-                navigate("/admin")
+                sessionStorage.setItem("isAuthenticated",'true');
+                window.dispatchEvent( new Event('storage') ) 
+                navigate("/users")
             }
         }
 
