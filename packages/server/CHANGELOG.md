@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.6.1...@darren-z-m-lin/trojan-web-manager-server@0.7.0) (2023-08-30)
+
+
+### Features
+
+* allow user start server with provided location of .env file ([26f9d02](https://github.com/iamindian/trojan-web-manager/commit/26f9d02b13a8dca87985fb0d45c292da299b1699))
+
+
+
+
+
 ## [0.6.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.6.0...@darren-z-m-lin/trojan-web-manager-server@0.6.1) (2023-08-29)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-server
