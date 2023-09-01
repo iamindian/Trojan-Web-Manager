@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.5.0...@darren-z-m-lin/trojan-web-manager-server@0.6.0) (2023-08-29)
+
+
+### Features
+
+* show env variables ([22dea63](https://github.com/iamindian/trojan-web-manager/commit/22dea63a41080db12e10e7bf3b9da817fd848eda))
+
+
+
+
+
 # [0.5.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.4.0...@darren-z-m-lin/trojan-web-manager-server@0.5.0) (2023-08-29)
 
 
