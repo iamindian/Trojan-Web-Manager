@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import reducer from "./reducer/reducer";
-import exReducer from "./reducer/expReducer";
+import extReducer from "./reducer/extReducer";
+import expReducer from "./reducer/expReducer";
 const rootReducer = combineReducers({
-  reducer,
-  exReducer
+  extReducer,
+  expReducer
 })
 
 export default rootReducer

@@ -3,26 +3,19 @@ import { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useSelector, useDispatch } from 'react-redux'
-import { getExpiration } from "../api/userService";
+import { getUser } from "../api/userService";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Stack from '@mui/material/Stack';
 import SendIcon from '@mui/icons-material/Send';
-import TwmPassword from '../components/TwmPassword';
-import TwmUsername from '../components/TwmUsername';
-import useCheckUsername from '../hooks/useCheckUsername';
 import useCheckPassword from '../hooks/useCheckPassword';
-function App() {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [usernameError, setUsernameError] = useState(false);
-  // const [passwordError, setPasswordError] = useState(false);
-  // const userRegex = /^[a-zA-Z@_.]+$/;
-  // const passwordRegex = /^[0-9]+$/;
-  // const userErrorMessage = "只允许输入允许小写a-z,大写A-Z,@,.";
-  // const passwordErrorMessage = "只允许输入数字";
+import useCheckUsername from '../hooks/useCheckUsername';
+import TwmUsername from '../components/TwmUsername';
+import TwmPassword from '../components/TwmPassword';
+function Admin() {
   const [username, usernameError, checkUsername] = useCheckUsername();
+  const [quantity, setQuantity] = useState(0);
   const [password, passwordError, checkPassword] = useCheckPassword();
-  const expReducer = useSelector((state) => state.expReducer)
+  const extReducer = useSelector((state) => state.extReducer)
   const dispatch = useDispatch();
   const update = value => ({
     type: "update",
@@ -34,12 +27,11 @@ function App() {
   const loading = () => ({
     type: "loading"
   })
-  const fetchExpiration = async () => {
-    const response = await getExpiration(username, password)
+  const fetchUser = async () => {
+    const response = await getUser(username)
     dispatch(loaded());
     dispatch(update(response.data))
   }
-  
 
   return (
 
@@ -47,30 +39,30 @@ function App() {
       display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
     }}>
       <Stack spacing={2} direction="column">
-        <TwmUsername error={usernameError} onBlur={checkUsername}/>
+        <TwmUsername error={usernameError} onBlur={checkUsername} /> 
         <TwmPassword error={passwordError} onBlur={checkPassword} />
+        <TextField 
+        onChange={(e)=>{
+          setQuantity(e.target.value);
+        }} variant="standard" type="number" inputProps={{min: 0, max: 255, inputMode: 'numeric', pattern: '[0-9]*' }} /> 
       </Stack>
       <div className='break'></div>
-      <div>
-        <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
-          if (usernameError || passwordError) {
+      <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
+          if (!username) {
             return;
           }
           dispatch(loading());
-          fetchExpiration();
-        }} variant="contained" loading={expReducer.loading} endIcon={<SendIcon />}>查询</LoadingButton>
-      </div>
-
-      <div className='break'></div>
+          fetchUser();
+        }} variant="contained" loading={extReducer.loading} endIcon={<SendIcon />}>续费</LoadingButton>
       <div style={{ marginTop: "24px" }}>
         <Typography sx={{ fontSize: 18 }} color="text.secondary">
-          有效期: {expReducer.expiration} 天
+          
         </Typography>
       </div>
     </div >
   )
 }
 export function Component() {
-  return App();
+  return Admin();
 }
-Component.displayName = "App";
+Component.displayName = "Admin";
