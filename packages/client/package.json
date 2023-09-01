@@ -2,6 +2,7 @@
   "name": "@darren-z-m-lin/trojan-web-manager-client",
   "version": "0.2.1",
   "type": "module",
+  "bin":"./bin/httpServer.js",
   "publishConfig": {
     "access": "public"
   },
