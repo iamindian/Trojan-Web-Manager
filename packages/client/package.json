@@ -1,6 +1,6 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-client",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "type": "module",
   "bin": {
     "twManager": "./bin/httpServer.cjs"
@@ -9,7 +9,7 @@
     "access": "public"
   },
   "scripts": {
-    "prepare":"pnpm build",
+    "prepare": "pnpm build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
