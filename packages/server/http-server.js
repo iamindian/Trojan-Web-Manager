@@ -27,13 +27,26 @@ const router = new Router();
 const HOST = process.env.HOST;
 const HTTP_PORT = process.env.PORT;
 // const HTTPS_PORT = 443;
+const userAuth = function(){
+  return async function(ctx, next){
+    const username = ctx.request.query.username
+    const password = ctx.request.query.password
+    let pass = false
+    if(username===process.env.USERNAME && password ===process.env.PASSWORD){
+      pass = true;
+    }
+    ctx.assert(pass, 401, 'Access denied. Please login!');
+    await next();
+  }
+}
 async function start() {
   await userModel(sequelize);
   await userService(sequelize);
   app.use(bodyParser());
+  router.use(["/users"],userAuth())
   router
     .get("/users", async (ctx, next) => {
-      ctx.body = await getUsers();
+      ctx.body = await getUsers(ctx.request.query.username, ctx.request.query.password);
     })
     .get("/expiration", async (ctx, next) => {
       try {
