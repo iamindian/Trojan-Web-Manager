@@ -5,7 +5,7 @@
   "description": "",
   "main": "http-server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --silent --watch",
     "start": "node ./http-server.js"
   },
   "author": "Darren Z M LIN",
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.22.9",
     "babel-jest": "^29.6.1",
     "jest": "^29.6.1",
-    "sequelize-mock": "^0.10.2"
+    "sequelize-mock": "^0.10.2",
+    "supertest": "^6.3.3"
   }
 }
