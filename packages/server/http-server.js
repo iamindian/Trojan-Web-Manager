@@ -8,14 +8,15 @@ const router = new Router();
 const HOST = "localhost";
 const HTTP_PORT = 8080;
 // const HTTPS_PORT = 443;
-router.get("/users", (ctx, next) => {
-  ctx.body = userService.getUsers(ctx.params.username, ctx.params.password);
-})
-.put("/adduser", (ctx, next) => {
+router.get("/users",async (ctx, next) => {
+  ctx.body = await userService.getUsers(ctx.params.username, ctx.params.password);
+}).get("/expiration", async (ctx, next) => {
+  ctx.body = await userService.getUserExpiration(ctx.request.query.username, ctx.request.query.password);
+}).put("/adduser", async (ctx, next) => {
   try{
     console.log(ctx.request.body);
     const user = JSON.parse(ctx.request.body);
-    userService.addUser(user.username, user.password);
+    await userService.addUser(user.username, user.password);
     ctx.body = "done"
   }catch(e){
     console.error(e);
