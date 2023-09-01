@@ -1,0 +1,22 @@
+{
+  "name": "@rocket/server",
+  "version": "0.0.1",
+  "bin":"./bin.js",
+  "description": "",
+  "main": "http-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./http-server.js"
+  },
+  "author": "Darren Z M LIN",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.14.2",
+    "koa-body-parser": "^1.1.2",
+    "koa-router": "^12.0.0",
+    "mariadb": "^3.2.0",
+    "mysql2": "^3.5.1",
+    "sequelize": "^6.32.1"
+  },
+  "type": "module"
+}
