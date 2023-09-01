@@ -1,4 +1,7 @@
-import { getUsers, addUser, getUserExpiration } from "./userService.js";
-export default {
-    getUsers, addUser, getUserExpiration
+import { getUsers, addUser, getUserExpiration, init as userInit } from "./userService.js";
+async function init(sequelize){
+    await userInit(sequelize);
+}
+export {
+    getUsers, addUser, getUserExpiration, init
 }
