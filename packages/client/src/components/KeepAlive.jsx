@@ -5,7 +5,7 @@ function KeepAlive(props) {
     let [timer, setTimer] = useState()
     async function ping() {
         clearTimeout(timer);
-        if(auth.isAuthenticated){
+        if(sessionStorage.getItem("isAuthenticated")){
             try{
                 await signin("","")
             }catch(e){
@@ -14,7 +14,7 @@ function KeepAlive(props) {
         }
         setTimer(setTimeout( () => {
             ping();
-        }, 10000))
+        }, 60000))
     }
     useEffect(() => {
         ping()
