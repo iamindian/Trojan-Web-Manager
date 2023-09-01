@@ -7,7 +7,7 @@ const ifaces = os.networkInterfaces();
 const chalk = require('chalk')
 const port = process.env.PORT || 80;
 const protocol = 'http://';
-const server = createServer({root:"../dist"});
+const server = createServer({root:path.resolve(__dirname, '../dist')});
 const logger = {
     info: console.log
 };
