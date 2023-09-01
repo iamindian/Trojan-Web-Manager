@@ -1,5 +1,5 @@
 {
-  "name": "@darren-z-m-lin/trojan-web-manager-client",
+  "name": "@darren-z-m-lin/trojan-web-manager-server",
   "version": "0.0.2",
   "bin": "./bin.js",
   "description": "",
