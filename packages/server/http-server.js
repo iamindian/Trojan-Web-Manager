@@ -27,7 +27,11 @@ async function start() {
   router.get("/users", async (ctx, next) => {
     ctx.body = await getUsers(ctx.params.username, ctx.params.password);
   }).get("/expiration", async (ctx, next) => {
-    ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
+    try {
+      ctx.body  = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
+    }catch(e){
+      console.error(e)
+    }
   }).put("/adduser", async (ctx, next) => {
     try {
       const user = ctx.request.body;
