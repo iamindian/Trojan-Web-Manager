@@ -1,6 +1,6 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-client",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "type": "module",
   "bin": {
     "twManager": "./bin/httpServer.cjs"
