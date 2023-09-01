@@ -21,9 +21,9 @@ describe('test server', function () {
     it("test add an user", async () => {
         const username = "admin", password = "123456"
         const admin = "admin", adminpass = "admin"
-        let response = await request.get('/signin').query({ username:admin, password:adminpass });
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-         response = await request.put('/adduser').set("Cookie", [...header['set-cookie']]).send({
+        response = await request.put('/adduser').set("Cookie", [...header['set-cookie']]).send({
             username, password: ssh224(username, password)
         })
         await expect(response.status).toBe(200);
@@ -89,7 +89,7 @@ describe('test server', function () {
             console.log(e)
         }
         const admin = "admin", adminpass = "admin"
-        let response = await request.get('/signin').query({ username:admin, password:adminpass });
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
             username,
@@ -123,7 +123,7 @@ describe('test server', function () {
             console.log(e)
         }
         const admin = "admin", adminpass = "admin"
-        let response = await request.get('/signin').query({ username:admin, password:adminpass });
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
             username,
@@ -132,6 +132,51 @@ describe('test server', function () {
         })
         expect(response.status).toBe(200);
         expect(response.body.delta).toBe('4');
+
+    })
+    it("test extend with mvcc", async () => {
+        const username = 'test'
+        const password = 'test'
+        const start = moment().subtract(5, 'month');
+        const delta = 3;
+        const quantity = 4;
+        try {
+            await sequelize.models.User.truncate();
+            await sequelize.models.User.create({
+                id: 1,
+                username,
+                password: ssh224(username, password),
+                start,
+                delta,
+                quota: 0,
+                download: 0,
+                upload: 0
+            });
+
+        } catch (e) {
+            console.log(e)
+        }
+        const admin = "admin", adminpass = "admin"
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
+        const { header } = response;
+        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+            username,
+            password,
+            quantity
+        })
+
+        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+            username,
+            password,
+            quantity
+        })
+        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+            username,
+            password,
+            quantity
+        })
+        expect(response.status).toBe(200);
+        expect(response.body.delta).toBe('12');
 
     })
 

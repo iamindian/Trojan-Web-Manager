@@ -12,9 +12,11 @@ export async function init(sequelize) {
   },{
     timestamps: false,
     freezeTableName: true,
-    tableName:"users"
+    tableName:"users",
+    version: true
   });
-  await model.sync({ force: true });
+ 
+ // await model.sync({ force: true });
 }
 
 
