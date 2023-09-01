@@ -1,8 +1,10 @@
 ## Trojan Web Manager
 
 This is a web based user management system for trojan server
-
-
+![login capture](./captures/login.png?raw=true "login")
+![query capture](./captures/query.png?raw=true "query")
+![add user capture](./captures/adduser.png?raw=true "adduser")
+![users capture](./captures/users.jpg?raw=true "users")
 #### prerequisites
 1. Trojan user table should be created already using following sql
 ```
@@ -113,3 +115,17 @@ http://127.0.0.1:8000
 ```
 #### Login system using username and password in .env
 
+## How to start and devlop the project
+#### prerequisites
+1. checkout the source code
+```
+git checkout ${project-url}
+```
+2. cd to the source code
+```
+cd /path/to/the/source/code
+```
+3. start the development environment
+```
+pnpm run dev
+```
