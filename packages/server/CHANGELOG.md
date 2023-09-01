@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.5...@darren-z-m-lin/trojan-web-manager-server@0.3.0) (2023-08-02)
+
+
+### Features
+
+* enable show all users ([0ba0222](https://github.com/iamindian/trojan-web-manager/commit/0ba0222466235f21d32b2a392068f285112a3e4b))
+
+
+
+
+
 ## [0.2.5](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.4...@darren-z-m-lin/trojan-web-manager-server@0.2.5) (2023-08-02)
 
 
