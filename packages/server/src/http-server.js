@@ -15,8 +15,8 @@ import { init as userModel } from "./models/User.model.js";
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
-const nodeCache = new NodeCache({ stdTTL: 600, checkperiod: 120 });
-nodeCache.on('set',(key, value)=>{
+const nodeCache = new NodeCache({ stdTTL: 15, checkperiod: 120 });
+nodeCache.on('set', (key, value) => {
   console.log(`node cache set ${key}->${value}`)
 })
 const database = process.env.DATABASE;
@@ -51,28 +51,39 @@ const userAuth = function () {
     await next();
   }
 }
+function setToken(ctx) {
+  const newToken = uuidv4();
+  nodeCache.set(newToken, Date.now());
+  ctx.cookies.set('access_token', newToken, { httpOnly: true, secure: false, sameSite: "none", secureProxy: true });
+  ctx.status = 200;
+}
 async function start() {
   await userModel(sequelize);
   await userService(sequelize);
   app.use(bodyParser());
-  router.use(["/users","/extend", "/adduser"], userAuth())
+  router.use(["/users", "/extend", "/adduser"], userAuth())
   router
     .get("/signin", async (ctx, next) => {
       const username = ctx.request.query.username;
       const password = ctx.request.query.password;
       try {
         /**
+         * update token
+         */
+        const accessToken = ctx.cookies.get('access_token')
+        if (accessToken && nodeCache.has(accessToken)) {
+          setToken(ctx)
+          return
+        }
+        /**
          * check username and password
          */
         if (username && password && username === process.env.ADMIN && password === process.env.ADMIN_PASSWORD) {
-          //generate token and save in cache
-          const token = uuidv4()
-          nodeCache.set(token, Date.now())
-          ctx.cookies.set('access_token', token, { httpOnly: true, secure: false, sameSite: "none", secureProxy: true });
-          ctx.status = 200;
-        } else {
-          ctx.status = 401;
+          setToken(ctx)
+          return
         }
+        ctx.status = 401;
+
       } catch (e) {
         console.error(e);
         ctx.body = {}
@@ -97,7 +108,7 @@ async function start() {
         const user = await extendExpiration(username, password, quantity)
         ctx.body = user;
       } catch (e) {
-        ctx.body = [{expiration:0}]
+        ctx.body = [{ expiration: 0 }]
       }
 
     })
