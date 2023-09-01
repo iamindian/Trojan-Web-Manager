@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iamindian/vite-react-env.git"
@@ -12,6 +11,9 @@
   "author": "Darren Z M LIN",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-lerna-scopes": "^17.6.6",
+    "husky": "^8.0.3",
     "lerna": "^7.1.4"
   }
 }
