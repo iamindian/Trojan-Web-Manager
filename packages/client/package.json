@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "type": "module",
   "bin": {
-    "twManager": "./bin/httpServer.js"
+    "twManager": "./bin/httpServer.cjs"
   },
   "publishConfig": {
     "access": "public"
