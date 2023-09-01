@@ -1,6 +1,6 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-server",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "bin": "./bin.js",
   "description": "",
   "main": "http-server.js",
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest --silent --watch",
     "start": "node ./index.js",
-    "dev":"nodemon ./index.js"
+    "dev": "nodemon ./index.js"
   },
   "author": "Darren Z M LIN",
   "license": "MIT",
