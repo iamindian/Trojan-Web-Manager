@@ -18,7 +18,7 @@ importers:
         specifier: ^17.6.6
         version: 17.6.6(lerna@7.1.4)
       husky:
-        specifier: ^8.0.3
+        specifier: ^8.0.0
         version: 8.0.3
       lerna:
         specifier: ^7.1.4
