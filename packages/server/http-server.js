@@ -32,9 +32,9 @@ async function start() {
   await userService(sequelize);
   app.use(bodyParser());
   router
-    // .get("/users", async (ctx, next) => {
-    //   ctx.body = await getUsers(ctx.params.username, ctx.params.password);
-    // })
+    .get("/users", async (ctx, next) => {
+      ctx.body = await getUsers();
+    })
     .get("/expiration", async (ctx, next) => {
       try {
         ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
