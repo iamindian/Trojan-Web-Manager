@@ -22,7 +22,7 @@ function UserGrid(props) {
     setPaginationModel({pageSize, page});
   }
   useEffect(()=>{
-    updateGrid({pageSize:5, page:0});
+    updateGrid({pageSize:20, page:0});
   },[])
   return (
     <div style={{ height: 500, padding: "24px" }}>

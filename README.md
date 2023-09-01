@@ -3,6 +3,7 @@
 This is a web based user management system for trojan server
 ![login capture](./captures/login.png?raw=true "login")
 ![query capture](./captures/query.png?raw=true "query")
+![renew capture](./captures/renew.png?raw=true "renew")
 ![add user capture](./captures/adduser.png?raw=true "adduser")
 ![users capture](./captures/users.jpg?raw=true "users")
 #### prerequisites

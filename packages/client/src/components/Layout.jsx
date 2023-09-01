@@ -91,7 +91,7 @@ function Layout() {
         {isAuthenticated == "true" ? <NavLink to="/admin" end>Add</NavLink> : ""}
         {isAuthenticated == "true" ? <NavLink to="/users" end>Users</NavLink> : ""}
         {/* {isAuthenticated == "true" ? <NavLink to="/grid" end>Grid</NavLink> : ""} */}
-        {isAuthenticated == "true" ? "" : <NavLink to="/login" end>Login</NavLink>}
+        {isAuthenticated == "true" ? "" : <NavLink to="/login" end>Sign In</NavLink>}
       </div>
       <div>
         <Outlet context={{ openAlert }} />

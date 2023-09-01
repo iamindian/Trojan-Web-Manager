@@ -74,9 +74,6 @@ function Admin() {
           {(data) => {
             return (
               <Stack spacing={2} direction="column">
-                <Typography sx={{ fontSize: 20, textAlign: "center" }} color="text.secondary">
-                  {id ? "Extend Expiration" : "Add User"}
-                </Typography>
                 <TwmUsername disabled={!!id} defaultValue={data.data.users[0].username} error={usernameError} onBlur={checkUsername} />
                 {id ? "" : <TwmPassword error={passwordError} onBlur={checkPassword} />}
                 {id ? <TextField
@@ -90,7 +87,7 @@ function Admin() {
                     id ? extendExpiration() : add();
                   }
 
-                }} variant="contained" loading={extReducer.loading} endIcon={<SendIcon />}>续费</LoadingButton>
+                }} variant="contained" loading={extReducer.loading} endIcon={<SendIcon />}>{id?"Renew":"Add"}</LoadingButton>
                 {/* <ReactJson style={{ marginTop: "24px" }} src={extReducer.user} /> */}
               </Stack>)
           }}

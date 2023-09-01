@@ -26,12 +26,9 @@ function Login(props) {
         display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap"
     }}>
         <Stack spacing={2} direction="column">
-            <Typography sx={{ fontSize: 20 ,textAlign:"center"}} color="text.secondary">
-                Login
-            </Typography>
             <TwmUsername error={usernameError} onBlur={checkUsername} />
             <TwmPassword error={passwordError} onBlur={checkPassword} />
-            <Button variant="contained" onClick={login}>登录</Button>
+            <Button variant="contained" onClick={login}>Sign In</Button>
         </Stack>
     </div>)
 }

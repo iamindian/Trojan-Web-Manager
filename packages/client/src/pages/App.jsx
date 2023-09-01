@@ -49,9 +49,6 @@ function App() {
       display: "flex", justifyContent: "center", alignItem: "center", flexWrap: "wrap", padding: "16px"
     }}>
       <Stack spacing={2} direction="column">
-        <Typography sx={{ fontSize: 20, textAlign:"center" }} color="text.secondary">
-          User Query
-        </Typography>
         <TwmUsername error={usernameError} onBlur={checkUsername} />
         <TwmPassword error={passwordError} onBlur={checkPassword} />
         <LoadingButton style={{ marginTop: "24px" }} size="small" onClick={() => {
