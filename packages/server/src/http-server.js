@@ -86,7 +86,7 @@ async function start() {
         ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
       } catch (e) {
         console.error(e);
-        ctx.body = {}
+        ctx.body = []
       }
     })
     .get("/extend", async (ctx, next) => {
@@ -97,7 +97,7 @@ async function start() {
         const user = await extendExpiration(username, password, quantity)
         ctx.body = user;
       } catch (e) {
-        ctx.body = {}
+        ctx.body = [{expiration:0}]
       }
 
     })
