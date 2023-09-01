@@ -1,6 +1,6 @@
 {
   "name": "@darren-z-m-lin/trojan-web-manager-server",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "bin": {
     "twManagerServer": "./dist/bin.js"
   },
@@ -10,7 +10,7 @@
     "access": "public"
   },
   "scripts": {
-    "prepare":"pnpm build",
+    "prepare": "pnpm build",
     "test": "jest --watch --slient=false",
     "clear": "rm -rf dist",
     "build": "pnpm clear && babel src --out-dir dist --extensions \".ts,.js\" --copy-files",
