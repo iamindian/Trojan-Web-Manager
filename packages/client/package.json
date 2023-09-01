@@ -2,7 +2,9 @@
   "name": "@darren-z-m-lin/trojan-web-manager-client",
   "version": "0.0.0",
   "type": "module",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
