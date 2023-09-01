@@ -5,16 +5,20 @@ function KeepAlive(props) {
     let [timer, setTimer] = useState()
     async function ping() {
         clearTimeout(timer);
-        if(sessionStorage.getItem("isAuthenticated")==="true"){
-            try{
-                await signin("","")
-            }catch(e){
-                console.error(e)
+        if (sessionStorage.getItem("isAuthenticated") === "true") {
+            try {
+                await signin("", "")
+            } catch (e) {
+                if (e.response.status === 401) {
+                    sessionStorage.setItem("isAuthenticated",'false')
+                    window.dispatchEvent( new Event('storage') )
+                    return redirect("/login")
+                }
             }
         }
-        setTimer(setTimeout( () => {
+        setTimer(setTimeout(() => {
             ping();
-        }, 60000))
+        }, 10000))
     }
     useEffect(() => {
         ping()
