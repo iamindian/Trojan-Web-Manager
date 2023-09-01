@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 'use strict';
-
+const path = require("path");
 const { createServer } = require("http-server");
 const os = require('os');
 const ifaces = os.networkInterfaces();
 const chalk = require('chalk')
 const port = process.env.PORT || 80;
 const protocol = 'http://';
-const server = createServer({root:path.resolve(__dirname, '../dist')});
+const server = createServer({root:path.join(__dirname, '..','dist')});
 const logger = {
     info: console.log
 };
