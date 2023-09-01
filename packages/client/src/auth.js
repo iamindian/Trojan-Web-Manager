@@ -1,10 +1,10 @@
-import {signin} from "./api/userService";
+import {signin as login} from "./api/userService";
 export default {
     isAuthenticated: false,
     username: null,
     async signin(username, password) {
-        const {response:{status}} = await signin(username, password) 
-        if(status===200){
+        const response = await login(username, password) 
+        if(response.status===200){
             this.isAuthenticated = true;
             this.username = username;
         }

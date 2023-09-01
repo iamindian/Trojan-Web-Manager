@@ -16,10 +16,12 @@ export async function getExpiration(username, password){
         }
     })
 }
-export async function getUser(username){
-    return await axios.get(`${prefix}/user`,{
+export async function extend(username, password,quantity){
+    return await axios.get(`${prefix}/extend`,{
         params:{
             username,
+            password,
+            quantity
         }
     })
 }
