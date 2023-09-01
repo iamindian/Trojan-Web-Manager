@@ -10,22 +10,31 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest --silent --watch",
+    "test": "jest --watch --slient=false",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js"
   },
   "author": "Darren Z M LIN",
   "license": "MIT",
   "dependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.22.5",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-jest": "^29.5.0",
+    "bignumber": "^1.1.0",
+    "bignumber.js": "^9.1.1",
     "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-body-parser": "^1.1.2",
     "koa-router": "^12.0.0",
     "mariadb": "^3.2.0",
+    "moment": "^2.29.4",
     "mysql2": "^3.5.1",
-    "sequelize": "^6.32.1"
+    "node-cache": "^5.1.2",
+    "sequelize": "^6.32.1",
+    "ts-jest": "^29.1.1",
+    "uuid": "^9.0.0"
   },
-  "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.22.9",
     "babel-jest": "^29.6.1",
