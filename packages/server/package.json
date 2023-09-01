@@ -4,6 +4,7 @@
   "bin": "./bin.js",
   "description": "",
   "main": "http-server.js",
+  "private": true,
   "scripts": {
     "test": "jest --silent --watch",
     "start": "node ./index.js",
