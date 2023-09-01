@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.3.1...@darren-z-m-lin/trojan-web-manager-server@0.4.0) (2023-08-03)
+
+
+### Features
+
+* check authorization of users path ([1b7bb27](https://github.com/iamindian/trojan-web-manager/commit/1b7bb272002f49f568e7a46fb68a67eed5ac17ec))
+
+
+
+
+
 ## [0.3.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.3.0...@darren-z-m-lin/trojan-web-manager-server@0.3.1) (2023-08-02)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-server
