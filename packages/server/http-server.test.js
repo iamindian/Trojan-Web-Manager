@@ -2,17 +2,20 @@
 // import iconv from 'iconv-lite';
 // import encodings from 'iconv-lite/encodings';
 // iconv.encodings = encodings;
-
+import dotenv from "dotenv";
 import supertest from 'supertest';
 import moment from 'moment';
 import { start, sequelize, nodeCache } from './http-server.js';
 import { ssh224 } from "./utils/index.js";
 import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 describe('test server', function () {
     let request, server, token;
     beforeAll(async () => {
         server = await start();
         request = supertest(server);
+        dotenv.config({ path: ".env" })
     })
     afterAll(async () => {
         await sequelize.close()
@@ -52,8 +55,8 @@ describe('test server', function () {
 
     })
     it("test get users with right token", async () => {
-        const username = "admin", password = "admin"
-        let response = await request.get('/signin').query({ username, password });
+        const admin = "admin", adminpass = "admin"
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
         response = await request.get('/users').set("Cookie", [...header['set-cookie']])
         expect(response.status).toBe(200);
