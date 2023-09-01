@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.1...@darren-z-m-lin/trojan-web-manager-server@0.2.2) (2023-08-02)
+
+
+### Bug Fixes
+
+* fix mismatch tablename between squelize and database ([750650b](https://github.com/iamindian/trojan-web-manager/commit/750650be6e004556f9c1ff65434fc827da179714))
+
+
+
+
+
 ## [0.2.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.2.0...@darren-z-m-lin/trojan-web-manager-server@0.2.1) (2023-08-02)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-server
