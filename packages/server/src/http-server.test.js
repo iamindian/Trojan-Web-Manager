@@ -59,7 +59,7 @@ describe('test server', function () {
         let response
         try {
             await sequelize.models.User.truncate();
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 100; i++) {
                 await sequelize.models.User.create({username: "t" + i, password: ssh224("t" + i, "p" + i)});
             }
             const admin = "admin", adminpass = "123456"
@@ -72,6 +72,25 @@ describe('test server', function () {
         }
         expect(response.status).toBe(200);
         expect(response.body.users.length).toBe(5)
+
+    })
+    it("test get users by id with right token", async () => {
+        let response
+        try {
+            await sequelize.models.User.truncate();
+            for (let i = 0; i < 100; i++) {
+                await sequelize.models.User.create({ username: "t" + i, password: ssh224("t" + i, "p" + i) });
+            }
+            const admin = "admin", adminpass = "123456"
+            response = await request.get('/signin').query({ username: admin, password: adminpass });
+            const { header } = response;
+            response = await request.get('/users').query({ offset: 0, limit: 5, id: 1 }).set("Cookie", [...header['set-cookie']])
+
+        } catch (e) {
+            console.error(e);
+        }
+        expect(response.status).toBe(200);
+        expect(response.body.users.length).toBe(1)
 
     })
     it("test get users with wrong token", async () => {
@@ -193,6 +212,76 @@ describe('test server', function () {
         })
         expect(response.status).toBe(200);
         expect(response.body.delta).toBe('12');
+
+    })
+    it("test extend by id when expiration is validated", async () => {
+        const username = 'test'
+        const password = 'test'
+        const start = moment().subtract(5, 'month');
+        const delta = 8;
+        const quantity = 4;
+        const id = 1;
+        const url = "/extendById"
+        try {
+            await sequelize.models.User.truncate();
+            await sequelize.models.User.create({
+                id,
+                username,
+                password: ssh224(username, password),
+                start,
+                delta,
+                quota: 0,
+                download: 0,
+                upload: 0
+            });
+
+        } catch (e) {
+            console.log(e)
+        }
+        const admin = "admin", adminpass = "123456"
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
+        const { header } = response;
+        response = await request.get(url).set("Cookie", [...header['set-cookie']]).query({
+            id,
+            quantity
+        })
+        expect(response.status).toBe(200);
+        expect(response.body.delta).toBe('12');
+
+    })
+    it("test extend by id when expiration is not validated", async () => {
+        const username = 'test'
+        const password = 'test'
+        const start = moment().subtract(5, 'month');
+        const delta = 3;
+        const quantity = 4;
+        const id = 1;
+        const url = "/extendById"
+        try {
+            await sequelize.models.User.truncate();
+            await sequelize.models.User.create({
+                id: 1,
+                username,
+                password: ssh224(username, password),
+                start,
+                delta,
+                quota: 0,
+                download: 0,
+                upload: 0
+            });
+
+        } catch (e) {
+            console.log(e)
+        }
+        const admin = "admin", adminpass = "123456"
+        let response = await request.get('/signin').query({ username: admin, password: adminpass });
+        const { header } = response;
+        response = await request.get(url).set("Cookie", [...header['set-cookie']]).query({
+            id,
+            quantity
+        })
+        expect(response.status).toBe(200);
+        expect(response.body.delta).toBe('4');
 
     })
 

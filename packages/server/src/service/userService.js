@@ -7,10 +7,10 @@ let sequelize = null;
 export async function init(sequelizeInstance) {
   sequelize = sequelizeInstance;
 }
-export async function getUsers(offset, limit) {
-  const users = await sequelize.models.User.findAll({offset, limit});
+export async function getUsers(offset, limit, where) {
+  const users = await sequelize.models.User.findAll({ offset, limit, where });
   const total = await sequelize.models.User.count();
-  return {users, total};
+  return { users, total };
 }
 export async function addUser(username, password) {
   const User = sequelize.models.User;
@@ -43,3 +43,26 @@ export async function extendExpiration(username, password, quantity) {
     console.error(e)
   }
 }
+export async function extendExpirationById(id, quantity) {
+  try {
+    const user = await sequelize.models.User.findOne({
+      where: {
+        id
+      }
+    })
+    if (!user)
+      return {};
+    if (moment(user.start).add(user.delta, 'month') >= moment()) {
+      user.delta = new BigNumber(user.delta).plus(quantity);
+    } else {
+      user.delta = quantity;
+      user.start = moment();
+    }
+    await user.save();
+    return user;
+  } catch (e) {
+    console.error(e)
+    throw e;
+  }
+}
+

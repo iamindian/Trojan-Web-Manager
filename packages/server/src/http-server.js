@@ -4,7 +4,7 @@ import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from 'koa-body-parser';
 import { Sequelize } from "sequelize";
-import { getUsers, getUserExpiration, addUser, init as userService, extendExpiration } from "./service/userService.js";
+import { getUsers, getUserExpiration, addUser, init as userService, extendExpiration, extendExpirationById } from "./service/userService.js";
 import { v4 as uuidv4 } from 'uuid';
 import NodeCache from 'node-cache';
 // import https from "https";
@@ -15,7 +15,7 @@ import { init as userModel } from "./models/User.model.js";
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
-const nodeCache = new NodeCache({ stdTTL: 15, checkperiod: 120 });
+const nodeCache = new NodeCache({ stdTTL: 0, checkperiod: 120 });
 nodeCache.on('set', (key, value) => {
   console.log(`node cache set ${key}->${value}`)
 })
@@ -92,7 +92,19 @@ async function start() {
     .get("/users", async (ctx, next) => {
       const offset = parseInt(ctx.request.query.offset);
       const limit = parseInt(ctx.request.query.limit);
-      ctx.body = await getUsers(offset, limit);
+      const id = ctx.request.query.id;
+      if(Number.isNaN(offset) || Number.isNaN(limit)){
+        return;
+      }
+      // const username = ctx.request.query.username;
+      let where = {}
+      if (id && !Number.isNaN(id)) {
+        where = Object.assign({}, where, { id })
+      }
+      // if (username) {
+      //   where = Object.assign({}, where, { username })
+      // }
+      ctx.body = await getUsers(offset, limit, where);
     })
     .get("/expiration", async (ctx, next) => {
       try {
@@ -110,6 +122,18 @@ async function start() {
         const user = await extendExpiration(username, password, quantity)
         ctx.body = user;
       } catch (e) {
+        ctx.body = [{ expiration: 0 }]
+      }
+
+    })
+    .get("/extendById", async (ctx, next) => {
+      const id = ctx.request.query.id;
+      const quantity = ctx.request.query.quantity;
+      try {
+        const user = await extendExpirationById(id, quantity)
+        ctx.body = user;
+      } catch (e) {
+        throw e;
         ctx.body = [{ expiration: 0 }]
       }
 
