@@ -15,6 +15,7 @@ import { init as userModel } from "./models/User.model.js";
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 import yargs from 'yargs'
+import { ssh224 } from "./utils/index.js";
 const args = yargs(process.argv.slice(2)).argv
 if (args.config) {
   dotenv.config({ path: args.config });
@@ -111,15 +112,21 @@ async function start() {
       if (Number.isNaN(offset) || Number.isNaN(limit)) {
         return;
       }
-      // const username = ctx.request.query.username;
       let where = {}
       if (id && !Number.isNaN(id)) {
         where = Object.assign({}, where, { id })
       }
-      // if (username) {
-      //   where = Object.assign({}, where, { username })
-      // }
-      ctx.body = await getUsers(offset, limit, where);
+      const key = ssh224(`/users`,`${id?id:""}:${offset}:${limit}`);
+      if(nodeCache.has(key)){
+        ctx.body = JSON.parse(nodeCache.get(key));
+        console.info(`${key} hitted`);
+      }else{
+        const result = await getUsers(offset, limit, where);
+        nodeCache.set(key,JSON.stringify(result), 30)
+        console.info(`${key} cached`);
+        ctx.body = result;
+      }
+      
     })
     .get("/expiration", async (ctx, next) => {
       try {
