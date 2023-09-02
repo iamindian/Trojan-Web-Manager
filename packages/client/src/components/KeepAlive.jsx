@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { signin } from "../api/userService"
 import auth from "../auth"
+import { redirect } from "react-router-dom"
 function KeepAlive(props) {
     let [timer, setTimer] = useState()
     async function ping() {
@@ -10,8 +11,8 @@ function KeepAlive(props) {
                 await signin("", "")
             } catch (e) {
                 if (e.response.status === 401) {
-                    sessionStorage.setItem("isAuthenticated",'false')
-                    window.dispatchEvent( new Event('storage') )
+                    sessionStorage.setItem("isAuthenticated", 'false')
+                    window.dispatchEvent(new Event('storage'))
                     return redirect("/login")
                 }
             }
