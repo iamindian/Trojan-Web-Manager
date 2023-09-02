@@ -18,24 +18,20 @@ export async function getExpiration(username, password){
     })
 }
 export async function extend(username, password,quantity){
-    return await axios.get(`${prefix}/extend`,{
-        params:{
+    return await axios.put(`${prefix}/extend`,{
             username,
             password,
             quantity
-        }
     })
 }
 export async function extendById(id,quantity){
-    return await axios.get(`${prefix}/extendById`,{
-        params:{
+    return await axios.put(`${prefix}/extendById`,{
             id,
             quantity
-        }
     })
 }
 export async function addUser(username, password){
-    return await axios.put(`${prefix}/adduser`, {
+    return await axios.post(`${prefix}/adduser`, {
             username,
             password
     })
