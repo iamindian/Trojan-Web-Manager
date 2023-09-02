@@ -71,7 +71,7 @@ const cached = async (ctx, key, func) => {
       console.info(`${key} hitted`);
     } else {
       const result = await func()()
-      nodeCache.set(key, JSON.stringify(result), 30)
+      nodeCache.set(key, JSON.stringify(result), 5)
       console.info(`${key} cached`);
       ctx.body = result;
     }
