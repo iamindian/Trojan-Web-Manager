@@ -44,11 +44,11 @@ ADMIN_PASSWORD=850702
 LOG=false
 
 ```
-#### start frontend
+#### Start frontend
 ``
 nohup twManager > twm.log 2>&1 &
 ``
-#### start backend
+#### Start backend
 ``
 nohup twManagerServer --config=/path/to/.env > twms.log 2>&1 &
 ``
