@@ -74,6 +74,9 @@ async function start() {
   await userService(sequelize);
   app.use(bodyParser());
   router.use(["/users", "/extend", "/adduser"], userAuth())
+  const handleError = function(ctx, e){
+    ctx.body = {error:e.message};
+  }
   router
     .get("/signin", async (ctx, next) => {
       const username = ctx.request.query.username;
@@ -134,7 +137,7 @@ async function start() {
         const user = await extendExpiration(username, password, quantity)
         ctx.body = user;
       } catch (e) {
-        ctx.body = [{ expiration: 0 }]
+        handleError(ctx,e)
       }
 
     })
@@ -145,8 +148,7 @@ async function start() {
         const user = await extendExpirationById(id, quantity)
         ctx.body = user;
       } catch (e) {
-        throw e;
-        ctx.body = [{ expiration: 0 }]
+        handleError(ctx,e)
       }
 
     })
@@ -155,7 +157,7 @@ async function start() {
         const user = ctx.request.body;
         ctx.body = await addUser(user.username, user.password);
       } catch (e) {
-        ctx.body = {}
+        handleError(ctx,e)
       }
     });
   app.use(router.routes());

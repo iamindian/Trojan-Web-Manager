@@ -61,7 +61,7 @@ describe('test server', function () {
         try {
             await sequelize.models.User.truncate();
             for (let i = 0; i < 100; i++) {
-                await sequelize.models.User.create({username: "t" + i, password: ssh224("t" + i, "p" + i)});
+                await sequelize.models.User.create({username: "t" + i, password: ssh224("t" + i, i)});
             }
             const admin = "admin", adminpass = "123456"
             response = await request.get('/signin').query({ username: admin, password: adminpass });
@@ -80,7 +80,7 @@ describe('test server', function () {
         try {
             await sequelize.models.User.truncate();
             for (let i = 0; i < 100; i++) {
-                await sequelize.models.User.create({ username: "t" + i, password: ssh224("t" + i, "p" + i) });
+                await sequelize.models.User.create({ username: "t" + i, password: ssh224("t" + i, i) });
             }
             const admin = "admin", adminpass = "123456"
             response = await request.get('/signin').query({ username: admin, password: adminpass });
