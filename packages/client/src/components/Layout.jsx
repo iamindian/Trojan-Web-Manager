@@ -1,12 +1,34 @@
 
-import { useEffect, useState, useRef,Fagment} from "react";
+import { useEffect, useState, useRef, Fagment } from "react";
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
 import AxiosNavigator from './AxiosNavigator'
 import { NavLink, Outlet } from 'react-router-dom';
 import KeepAlive from './KeepAlive';
+import AppBar from '@mui/material/AppBar';
+import { Box, Button, Container, Grid, Toolbar, ThemeProvider, IconButton, Paper } from "@mui/material";
+import { createTheme } from '@mui/material/styles';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+
+
 function Layout() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#757ce8',
+        main: '#3f50b5',
+        dark: '#002884',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  });
   const [isAuthenticated, setIsAuthenticated] = useState("false");
   const listener = useRef(null);
   const blue = {
@@ -74,35 +96,64 @@ function Layout() {
   function closeAlert() {
     setOpen(false);
   }
-  function updateAuthenticated(){
-    setIsAuthenticated(sessionStorage.getItem("isAuthenticated")); 
+  function updateAuthenticated() {
+    setIsAuthenticated(sessionStorage.getItem("isAuthenticated"));
   }
-  useEffect(()=>{
-    listener.current = window.addEventListener('storage',updateAuthenticated);
-    window.dispatchEvent( new Event('storage') ) 
-    return ()=>{
+  useEffect(() => {
+    listener.current = window.addEventListener('storage', updateAuthenticated);
+    window.dispatchEvent(new Event('storage'))
+    return () => {
       window.removeEventListener('storage', updateAuthenticated);
     }
-  },[isAuthenticated])
+  }, [isAuthenticated])
   return (
-    <div className="navigater">
-      <div style={{ display: "flex", paddingTop: "16px", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
-        <NavLink to="/" >Query</NavLink>
-        {isAuthenticated == "true" ? <NavLink to="/admin" end>Add</NavLink> : ""}
-        {isAuthenticated == "true" ? <NavLink to="/users" end>Users</NavLink> : ""}
-        {/* {isAuthenticated == "true" ? <NavLink to="/grid" end>Grid</NavLink> : ""} */}
-        {isAuthenticated == "true" ? "" : <NavLink to="/login" end>Sign In</NavLink>}
-      </div>
-      <div>
-        <Outlet context={{ openAlert }} />
-      </div>
-      <AxiosNavigator></AxiosNavigator>
-      <KeepAlive></KeepAlive>
-      {open ? <ClickAwayListener onClickAway={onClickAway}>
-        <CustomSnackbar {...getRootProps()}>{content}</CustomSnackbar>
-      </ClickAwayListener> : null}
 
+    <div className="navigater">
+      <ThemeProvider theme={theme}>
+        <AppBar style={{ display: "flex", width: "100%", position: "fixed", left: "0px", top: "0px" }}>
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+
+              <Box>
+                <Button color="inherit" component={NavLink} to="/" >
+                  Query
+                  {/* <NavLink >Query</NavLink> */}
+                </Button>
+                {isAuthenticated == "true" ? <Button color="inherit" component={NavLink} to="/admin" end>Add</Button> : ""}
+                {isAuthenticated == "true" ? <Button color="inherit" component={NavLink} to="/users" end>Users</Button> : ""}
+                {isAuthenticated == "true" ? <Button color="inherit" component={NavLink} to="/grid" end>Grid</Button> : ""}
+                {isAuthenticated == "true" ? "" : <Button color="inherit" component={NavLink} to="/login" end>Sign In</Button>}
+              </Box>
+              <Box sx={{ flexGrow: 1 }} ></Box>
+              <Box>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+
+
+            </Toolbar>
+          </Container>
+
+        </AppBar>
+        <div>
+          <Outlet context={{ openAlert }} />
+        </div>
+        <AxiosNavigator></AxiosNavigator>
+        <KeepAlive></KeepAlive>
+        {open ? <ClickAwayListener onClickAway={onClickAway}>
+          <CustomSnackbar {...getRootProps()}>{content}</CustomSnackbar>
+        </ClickAwayListener> : null}
+      </ThemeProvider>
     </div >
+
+
   )
 }
 export default Layout;
