@@ -17,7 +17,7 @@
     "start": "pnpm build && node ./dist/index.js",
     "esm": "node ./src/main.js",
     "dev": "pnpm build && nodemon ./dist/index.js",
-    "test-bin": "pnpm build && pnpm twManager -c ../../.env"
+    "test-bin": "pnpm build && pnpm twManager --env ../../.env"
   },
   "author": "Darren Z M LIN",
   "license": "MIT",

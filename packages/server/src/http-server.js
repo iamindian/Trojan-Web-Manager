@@ -17,8 +17,8 @@ import { init as userModel } from "./models/User.model.js";
 import yargs from 'yargs'
 import { ssh224 } from "./utils/index.js";
 const args = yargs(process.argv.slice(2)).argv
-if (args.config) {
-  dotenv.config({ path: args.config });
+if (args.env) {
+  dotenv.config({ path: args.env });
 } else {
   dotenv.config({ path: path.resolve(__dirname, '../.env') });
 }
@@ -64,6 +64,22 @@ const userAuth = function () {
     await next();
   }
 }
+const cached = async (ctx, key, func) => {
+  try {
+    if (nodeCache.has(key)) {
+      ctx.body = JSON.parse(nodeCache.get(key));
+      console.info(`${key} hitted`);
+    } else {
+      const result = await func()()
+      nodeCache.set(key, JSON.stringify(result), 30)
+      console.info(`${key} cached`);
+      ctx.body = result;
+    }
+  } catch (e) {
+    handleError(ctx, e);
+  }
+
+}
 function setToken(ctx) {
   const newToken = uuidv4();
   nodeCache.set(newToken, Date.now());
@@ -75,8 +91,8 @@ async function start() {
   await userService(sequelize);
   app.use(bodyParser());
   router.use(["/users", "/extend", "/adduser"], userAuth())
-  const handleError = function(ctx, e){
-    ctx.body = {error:e.message};
+  const handleError = function (ctx, e) {
+    ctx.body = { error: e.message };
   }
   router
     .get("/signin", async (ctx, next) => {
@@ -101,8 +117,7 @@ async function start() {
         ctx.status = 401;
 
       } catch (e) {
-        console.error(e);
-        ctx.body = {}
+        handleError(ctx, e);
       }
     })
     .get("/users", async (ctx, next) => {
@@ -110,61 +125,60 @@ async function start() {
       const limit = parseInt(ctx.request.query.limit);
       const id = ctx.request.query.id;
       if (Number.isNaN(offset) || Number.isNaN(limit)) {
+        ctx.body = { error: 'wrong params' }
         return;
       }
       let where = {}
       if (id && !Number.isNaN(id)) {
         where = Object.assign({}, where, { id })
       }
-      const key = ssh224(`/users`,`${id?id:""}:${offset}:${limit}`);
-      if(nodeCache.has(key)){
-        ctx.body = JSON.parse(nodeCache.get(key));
-        console.info(`${key} hitted`);
-      }else{
-        const result = await getUsers(offset, limit, where);
-        nodeCache.set(key,JSON.stringify(result), 30)
-        console.info(`${key} cached`);
-        ctx.body = result;
-      }
-      
+      const key = ssh224(`/users`, `${id ? id : ""}:${offset}:${limit}`);
+      await cached(ctx, key, () => {
+        return async () => {
+          return await getUsers(offset, limit, where);
+        }
+      });
+
     })
     .get("/expiration", async (ctx, next) => {
-      try {
-        ctx.body = await getUserExpiration(ctx.request.query.username, ctx.request.query.password);
-      } catch (e) {
-        console.error(e);
-        ctx.body = []
-      }
-    })
-    .get("/extend", async (ctx, next) => {
       const username = ctx.request.query.username;
       const password = ctx.request.query.password;
-      const quantity = ctx.request.query.quantity;
+      const key = ssh224("/expiration", `${username}:${password}`)
+      await cached(ctx, key, () => {
+        return async () => {
+          return await getUserExpiration(username, password);
+        }
+      });
+    })
+    .put("/extend", async (ctx, next) => {
+      const username = ctx.request.body.username;
+      const password = ctx.request.body.password;
+      const quantity = ctx.request.body.quantity;
       try {
         const user = await extendExpiration(username, password, quantity)
         ctx.body = user;
       } catch (e) {
-        handleError(ctx,e)
+        handleError(ctx, e)
       }
 
     })
-    .get("/extendById", async (ctx, next) => {
-      const id = ctx.request.query.id;
-      const quantity = ctx.request.query.quantity;
+    .put("/extendById", async (ctx, next) => {
+      const id = ctx.request.body.id;
+      const quantity = ctx.request.body.quantity;
       try {
         const user = await extendExpirationById(id, quantity)
         ctx.body = user;
       } catch (e) {
-        handleError(ctx,e)
+        handleError(ctx, e)
       }
 
     })
-    .put("/adduser", async (ctx, next) => {
+    .post("/adduser", async (ctx, next) => {
       try {
         const user = ctx.request.body;
         ctx.body = await addUser(user.username, user.password);
       } catch (e) {
-        handleError(ctx,e)
+        handleError(ctx, e)
       }
     });
   app.use(router.routes());

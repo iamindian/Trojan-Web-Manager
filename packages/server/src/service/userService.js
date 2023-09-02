@@ -24,7 +24,7 @@ export async function getUserExpiration(username, password) {
 }
 export async function extendExpiration(username, password, quantity) {
   try {
-    const user = await sequelize.models.User.findOne({
+    let user = await sequelize.models.User.findOne({
       where: {
         username, password: ssh224(username, password)
       }
@@ -34,10 +34,10 @@ export async function extendExpiration(username, password, quantity) {
     if (moment(user.start).add(user.delta, 'month') >= moment()) {
       user.delta = new BigNumber(user.delta).plus(quantity);
     } else {
-      user.delta = quantity;
+      user.delta = new BigNumber(quantity);
       user.start = moment();
     }
-    await user.save();
+    user = await user.save();
     return user;
   } catch (e) {
     console.error(e)
@@ -55,7 +55,7 @@ export async function extendExpirationById(id, quantity) {
     if (moment(user.start).add(user.delta, 'month') >= moment()) {
       user.delta = new BigNumber(user.delta).plus(quantity);
     } else {
-      user.delta = quantity;
+      user.delta = new BigNumber(quantity);
       user.start = moment();
     }
     await user.save();

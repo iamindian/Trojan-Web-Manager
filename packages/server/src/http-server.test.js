@@ -7,15 +7,14 @@ import supertest from 'supertest';
 import moment from 'moment';
 import { start, sequelize, nodeCache } from './http-server.js';
 import { ssh224 } from "./utils/index.js";
-import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, './.env') });
+
 describe('test server', function () {
     let request, server, token;
     beforeAll(async () => {
+        dotenv.config({ path: path.resolve(__dirname, '../.env') });
         server = await start();
         request = supertest(server);
-        dotenv.config({ path: ".env" })
     })
     afterAll(async () => {
         await sequelize.close()
@@ -27,7 +26,7 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.put('/adduser').set("Cookie", [...header['set-cookie']]).send({
+        response = await request.post('/adduser').set("Cookie", [...header['set-cookie']]).send({
             username, password: ssh224(username, password)
         })
         expect(response.status).toBe(200);
@@ -127,7 +126,7 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put('/extend').set("Cookie", [...header['set-cookie']]).send({
             username,
             password,
             quantity
@@ -161,7 +160,7 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put('/extend').set("Cookie", [...header['set-cookie']]).send({
             username,
             password,
             quantity
@@ -195,18 +194,18 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put('/extend').set("Cookie", [...header['set-cookie']]).send({
             username,
             password,
             quantity
         })
 
-        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put('/extend').set("Cookie", [...header['set-cookie']]).send({
             username,
             password,
             quantity
         })
-        response = await request.get('/extend').set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put('/extend').set("Cookie", [...header['set-cookie']]).send({
             username,
             password,
             quantity
@@ -242,7 +241,7 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.get(url).set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put(url).set("Cookie", [...header['set-cookie']]).send({
             id,
             quantity
         })
@@ -277,7 +276,7 @@ describe('test server', function () {
         const admin = "admin", adminpass = "123456"
         let response = await request.get('/signin').query({ username: admin, password: adminpass });
         const { header } = response;
-        response = await request.get(url).set("Cookie", [...header['set-cookie']]).query({
+        response = await request.put(url).set("Cookie", [...header['set-cookie']]).send({
             id,
             quantity
         })
