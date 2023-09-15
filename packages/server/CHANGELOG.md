@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.8.0 (2023-09-15)
+
+
+### Bug Fixes
+
+* add an error log ([1428242](https://github.com/iamindian/trojan-web-manager/commit/1428242cb84d8640875374cb49c3f943b9838cbd))
+* data cached for users ([7a71ff2](https://github.com/iamindian/trojan-web-manager/commit/7a71ff29c13e855dc70daac84942154eb4b086b1))
+* fix mismatch tablename between squelize and database ([344d4b9](https://github.com/iamindian/trojan-web-manager/commit/344d4b914d78b72966f14ece205b47bbed5a1b32))
+* fix missing __dirname in esm module ([cedd947](https://github.com/iamindian/trojan-web-manager/commit/cedd94715afb259db68a6b86a2a50fdf5b180eff))
+* handler an expiration can not be found ([8cb9ca8](https://github.com/iamindian/trojan-web-manager/commit/8cb9ca8e51460cdb1195efe36996629c318b8f37))
+* init data when user is created. integration esm ([12e06d4](https://github.com/iamindian/trojan-web-manager/commit/12e06d411115b8c3ed56b55c49ecbedbe7471716))
+* remove redundant code ([52371f7](https://github.com/iamindian/trojan-web-manager/commit/52371f7569970f55afaa153bf39f4afcded8cdfc))
+* update node cache ttl ([04f60ad](https://github.com/iamindian/trojan-web-manager/commit/04f60adceeb8c9f3a90daf3d172cf028445ed3bb))
+* update token ttl time ([b183388](https://github.com/iamindian/trojan-web-manager/commit/b18338815449e8412eab0b542f980e125466390a))
+* update ttl ([11e01f4](https://github.com/iamindian/trojan-web-manager/commit/11e01f4756ea0608f58375efe81d500a863c971d))
+* using put for updating and using post for create resource ([aa46605](https://github.com/iamindian/trojan-web-manager/commit/aa46605a9038e4850f51dbd286d8ce301737c77d))
+
+
+### Features
+
+* adduser, extend, signin, expiration, users, auth ([1e7d2a8](https://github.com/iamindian/trojan-web-manager/commit/1e7d2a80043d59648e007aa28360f30e04336703))
+* allow user start server with provided location of .env file ([9048881](https://github.com/iamindian/trojan-web-manager/commit/90488817162757dc01f6e99bc27cfe1a98fc764f))
+* check authorization of users path ([8b8401a](https://github.com/iamindian/trojan-web-manager/commit/8b8401abc0ea446fa80d6ecabb6f09c5eaf67b63))
+* enable show all users ([6f4d981](https://github.com/iamindian/trojan-web-manager/commit/6f4d98130a30a8a8438d33affc91fc74af09d169))
+* error handler added ([2d71b30](https://github.com/iamindian/trojan-web-manager/commit/2d71b305be2408bb5aa67e33b12b3039741f9171))
+* extend expiration by id added, get users by id added ([72fbb1c](https://github.com/iamindian/trojan-web-manager/commit/72fbb1c88405f75ac6305b4d011d021577d4c397))
+* extract env variables to .env file ([26847e3](https://github.com/iamindian/trojan-web-manager/commit/26847e380d0c45446ce56f40f1dea451915a1602))
+* mvcc for resolving extend concurrency issue ([926c5b3](https://github.com/iamindian/trojan-web-manager/commit/926c5b33fd3577c4d9a5a6f8e62ca1870c1d8e70))
+* query expiration successfully ([fc63ce6](https://github.com/iamindian/trojan-web-manager/commit/fc63ce66069212ad375c5357a5bf70a156933db4))
+* query user expiration added ([2e55d7c](https://github.com/iamindian/trojan-web-manager/commit/2e55d7c32a1c0177897221dee78fdfd0a1a9552b))
+* show env variables ([5063879](https://github.com/iamindian/trojan-web-manager/commit/506387963cbeef1db442b8983f5e266395c32493))
+* users pagination added ([7c7b2db](https://github.com/iamindian/trojan-web-manager/commit/7c7b2db32bf3d062285d975d20c316836e613917))
+
+
+
+
+
 ## [0.7.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.7.0...@darren-z-m-lin/trojan-web-manager-server@0.7.1) (2023-08-30)
 
 **Note:** Version bump only for package @darren-z-m-lin/trojan-web-manager-server

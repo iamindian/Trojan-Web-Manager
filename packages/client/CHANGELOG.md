@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.0 (2023-09-15)
+
+
+### Bug Fixes
+
+* fix a bug for processing 401 error ([e845aee](https://github.com/iamindian/trojan-web-manager/commit/e845aee7417d2f5c9807d78c1c74dbcdcc447d42))
+* fix some pagination bug and update restful interfaces ([8d491ff](https://github.com/iamindian/trojan-web-manager/commit/8d491ffe8216619877ed5ff28b02092e733deba0))
+* handler an expiration can not be found ([8cb9ca8](https://github.com/iamindian/trojan-web-manager/commit/8cb9ca8e51460cdb1195efe36996629c318b8f37))
+* import redirect function ([71939d8](https://github.com/iamindian/trojan-web-manager/commit/71939d8bc3db7ef769c23b22ddaae00dccaf89ee))
+* update some terms and update captures ([f71eb73](https://github.com/iamindian/trojan-web-manager/commit/f71eb73d90cb27377e301ece9788309ca2549a48))
+
+
+### Features
+
+* add bin script for client ([0f6015f](https://github.com/iamindian/trojan-web-manager/commit/0f6015f81c9ef5e5718296025d7a841842754148))
+* add loading button for query expiration and update input validation ([e02cb51](https://github.com/iamindian/trojan-web-manager/commit/e02cb511c4c83a81bb07de50b9c008a2a92e871e))
+* add mui icons and fonts and add http proxy for backend api ([40d725b](https://github.com/iamindian/trojan-web-manager/commit/40d725baa10c3c5242403439d2a8bc917e84e13f))
+* extend expiration from client to backend successfully ([d76f5b6](https://github.com/iamindian/trojan-web-manager/commit/d76f5b6a8fa8e410a89d46f90c82d24b02aaeee9))
+* login feature implemented and fix some style bugs ([934adc9](https://github.com/iamindian/trojan-web-manager/commit/934adc94ecfeee9f67f16a4a5366d8342cc230be))
+* mui appbar added ([ecedfa6](https://github.com/iamindian/trojan-web-manager/commit/ecedfa690c7e568cfe1fd96779acd8ef41fbecd8))
+* query expiration sucessfully ([cf75b62](https://github.com/iamindian/trojan-web-manager/commit/cf75b62d77cbe4dda366df15cee6523d0a74918d))
+* show nav links for administrator only ([ee4e4ad](https://github.com/iamindian/trojan-web-manager/commit/ee4e4add6fb3945116edfc9d572b73c575269a85))
+* start project by commandline globally ([381e0d9](https://github.com/iamindian/trojan-web-manager/commit/381e0d95f1ede5db6251d860793e0a584e4df799))
+* table for showing users added ([25f49ff](https://github.com/iamindian/trojan-web-manager/commit/25f49ff09d85cc93eec921929b20dd6aa8413faa))
+* users list added, alert added, extend expiration by id ([196a3a3](https://github.com/iamindian/trojan-web-manager/commit/196a3a3f7472afac0a0e0e0030bdeac5ed4f6338))
+
+
+
+
+
 ## [0.4.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-client@0.4.0...@darren-z-m-lin/trojan-web-manager-client@0.4.1) (2023-08-29)
 
 
