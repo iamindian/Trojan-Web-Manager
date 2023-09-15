@@ -5,7 +5,7 @@ This is a web based user management system for trojan server
 ![query capture](./captures/query.png?raw=true "query")
 ![renew capture](./captures/renew.png?raw=true "renew")
 ![add user capture](./captures/adduser.png?raw=true "adduser")
-![users capture](./captures/users.jpg?raw=true "users")
+![users capture](./captures/users.png?raw=true "users")
 #### prerequisites
 1. Trojan user table should be created already using following sql
 ```
