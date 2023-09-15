@@ -50,7 +50,7 @@ nohup twManager > twm.log 2>&1 &
 ``
 #### Start backend
 ``
-nohup twManagerServer --c=/path/to/.env > twms.log 2>&1 &
+nohup twManagerServer --env=/path/to/.env > twms.log 2>&1 &
 ``
 
 #### Remove background jobs from current session
