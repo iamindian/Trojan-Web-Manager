@@ -21,8 +21,8 @@ This is a web based user management system for trojan server
         );
 ```
 2. Add a column named version and add a column named delta to trojan user table for optimistic locking
-        ```ALTER users ADD COLUMN version INT(11) DEFAULT 0;```
-        ```ALTER users ADD COLUMN delta INT(11) DEFAULT 0;```
+        ```ALTER TABLE users ADD COLUMN version INT(11) DEFAULT 0;```
+        ```ALTER TABLE users ADD COLUMN delta INT(11) DEFAULT 0;```
 3. Nginx should be installed
 #### Frontend installation
 ```pnpm i -g @darren-z-m-lin/trojan-web-manager-server```
