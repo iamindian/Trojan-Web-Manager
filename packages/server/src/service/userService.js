@@ -33,9 +33,11 @@ export async function extendExpiration(username, password, quantity) {
       return {};
     if (moment(user.start).add(user.delta, 'month') >= moment()) {
       user.delta = new BigNumber(user.delta).plus(quantity);
+      user.quota = -1;
     } else {
       user.delta = new BigNumber(quantity);
       user.start = moment();
+      user.quota = -1;
     }
     user = await user.save();
     return user;
@@ -54,9 +56,11 @@ export async function extendExpirationById(id, quantity) {
       return {};
     if (moment(user.start).add(user.delta, 'month') >= moment()) {
       user.delta = new BigNumber(user.delta).plus(quantity);
+      user.quota = -1;
     } else {
       user.delta = new BigNumber(quantity);
       user.start = moment();
+      user.quota = -1;
     }
     await user.save();
     return user;
@@ -65,4 +69,3 @@ export async function extendExpirationById(id, quantity) {
     throw e;
   }
 }
-
