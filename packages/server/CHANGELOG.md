@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/iamindian/trojan-web-manager/compare/@darren-z-m-lin/trojan-web-manager-server@0.8.0...@darren-z-m-lin/trojan-web-manager-server@0.8.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* fix quota is not updated to -1 when exipration extend by id ([ae510da](https://github.com/iamindian/trojan-web-manager/commit/ae510da274b27332c17381f768a52389e27f2af0))
+
+
+
+
+
 # 0.8.0 (2023-09-15)
 
 
