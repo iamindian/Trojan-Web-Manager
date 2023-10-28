@@ -24,10 +24,10 @@ This is a web based user management system for trojan server
         ```ALTER TABLE users ADD COLUMN version INT(11) DEFAULT 0;```
         ```ALTER TABLE users ADD COLUMN delta INT(11) DEFAULT 0;```
 3. Nginx should be installed
-#### Frontend installation
+#### Backend installation
 ```pnpm i -g @darren-z-m-lin/trojan-web-manager-server```
 
-#### Backend installation
+#### Frontend installation
 ```pnpm i -g @darren-z-m-lin/trojan-web-manager-client```
 
 #### Backend Configuration
